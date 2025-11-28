@@ -7,26 +7,18 @@ import { useRouter } from "next/navigation";
 // -----------------------------------------------------------------------------
 // CONFIG
 // -----------------------------------------------------------------------------
-const ADDRESS = "Chem. de Maisonneuve 14b, 1219 Châtelaine";
-const ADDRESS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  ADDRESS
-)}`;
-
 const BRAND = {
   name: "RR COIFFURE",
   email: "contact@rr-coiffure.com",
-  address: ADDRESS,
-  addressLink: ADDRESS_LINK,
-  hours: "Du mardi au samedi",
-  logo: "/images/galerie/rr-logo.jpg", // ex: /public/images/galerie/rr-logo.jpg
+  logo: "/images/galerie/rr-logo.jpg",
   instagram: "@rr.coiffure",
   instagramLink: "https://www.instagram.com/rr.coiffure/",
 };
 
-const LAUNCH_AT = "2025-11-05T09:00:00+01:00";
+const LAUNCH_AT = "2025-12-05T09:00:00+01:00";
 
 // -----------------------------------------------------------------------------
-// BIG COUNTDOWN
+// COUNTDOWN
 // -----------------------------------------------------------------------------
 type Parts = { d: number; h: number; m: number; s: number };
 
@@ -52,34 +44,47 @@ function BigCountdown({ target }: { target: string }) {
     return () => clearInterval(id);
   }, [targetMs]);
 
-  if (isNaN(targetMs)) return null;
   if (left === null) return <div className="h-24" />;
 
   const { d, h, m, s } = left;
   const done = d === 0 && h === 0 && m === 0 && s === 0;
-  if (done) return <p className="text-2xl sm:text-3xl font-bold">Lancement imminent</p>;
+
+  if (done) {
+    return (
+      <p className="mt-3 text-sm sm:text-base font-semibold text-[#5b1431]">
+        Ouverture imminente, restez connectés.
+      </p>
+    );
+  }
 
   const Cell = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center gap-2">
-      <div className="tabular-nums rounded-2xl bg-white/80 shadow px-5 py-4 sm:px-7 sm:py-6">
-        <span className="block text-4xl sm:text-6xl font-extrabold">
+      <div className="rounded-2xl bg-white/95 shadow-sm px-5 py-4 sm:px-7 sm:py-6 border border-pink-100 transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg">
+        <span className="block text-3xl sm:text-5xl font-extrabold tabular-nums text-[#291017]">
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="text-xs sm:text-sm text-black/60">{label}</span>
+      <span className="text-[10px] sm:text-xs font-medium text-[#a0526e] uppercase tracking-[0.18em]">
+        {label}
+      </span>
     </div>
   );
 
   return (
-    <div
-      className="mt-2 grid grid-cols-4 gap-5 sm:gap-8"
-      aria-live="polite"
-      aria-label="Compte à rebours avant mise en ligne"
-    >
-      <Cell value={d} label="jours" />
-      <Cell value={h} label="heures" />
-      <Cell value={m} label="minutes" />
-      <Cell value={s} label="secondes" />
+    <div className="mt-3">
+      <p className="text-[11px] sm:text-xs text-[#7e3b54] tracking-wide">
+        Ouverture prévue le 5 décembre
+      </p>
+      <div
+        className="mt-3 grid grid-cols-4 gap-3 sm:gap-6"
+        aria-live="polite"
+        aria-label="Compte à rebours avant mise en ligne"
+      >
+        <Cell value={d} label="jours" />
+        <Cell value={h} label="heures" />
+        <Cell value={m} label="minutes" />
+        <Cell value={s} label="secondes" />
+      </div>
     </div>
   );
 }
@@ -94,29 +99,27 @@ const GALLERY = [
   { id: "4", src: "/images/galerie/4.jpeg", alt: "Soin Spa" },
   { id: "5", src: "/images/galerie/5.jpeg", alt: "Enfants" },
   { id: "6", src: "/images/galerie/6.jpeg", alt: "Moderne" },
-] as const;
+];
 
 // -----------------------------------------------------------------------------
 // PAGE
 // -----------------------------------------------------------------------------
 export default function MaintenancePage() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (lightbox !== null) setLightbox(null);
-      }
+      if (e.key === "Escape") setLightbox(null);
       if (lightbox !== null && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
         setLightbox((idx) => {
           if (idx === null) return null;
-          const next = e.key === "ArrowRight" ? idx + 1 : idx - 1;
           const len = GALLERY.length;
+          const next = e.key === "ArrowRight" ? idx + 1 : idx - 1;
           return ((next % len) + len) % len;
         });
       }
@@ -136,155 +139,197 @@ export default function MaintenancePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
         credentials: "include",
-        cache: "no-store",
       });
       const data = await res.json();
       if (!res.ok || data?.ok !== true) {
-        setError(data?.error || "Erreur d'authentification");
+        setError("Code incorrect");
         setLoading(false);
         return;
       }
-      router.push("/"); // redirection vers le site. Le bouton Déconnexion vit côté site.
+      router.push("/");
     } catch {
       setError("Erreur réseau");
       setLoading(false);
     }
   }
 
+  const inputBorder = error ? "border-red-400" : "border-[#F9A8D4]";
+
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#FFE6F4] via-[#F7B7DA] to-[#E98AC3] text-[#111] p-6">
-      <div className="w-full max-w-6xl">
-        <div className="flex flex-col items-center text-center gap-8">
-          {/* Logo + titre */}
-          <Image
-            src={BRAND.logo}
-            alt={BRAND.name}
-            width={120}
-            height={120}
-            priority
-            className="rounded-full shadow"
-          />
-          <h1 className="text-4xl font-extrabold">{BRAND.name}</h1>
+    <main className="min-h-screen bg-gradient-to-b from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] text-[#2b1019] p-4 sm:p-6">
+      {/* décor luxe en fond */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(255,255,255,0.9)_0,transparent_50%),radial-gradient(circle_at_90%_100%,rgba(255,255,255,0.8)_0,transparent_50%)]" />
+        <div className="absolute inset-16 rounded-[3rem] border border-white/50 shadow-[0_0_60px_rgba(255,255,255,0.45)]" />
+      </div>
 
-          {/* État + compte à rebours */}
-          <div className="flex flex-col items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-sm shadow">
-              <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-              Maintenance en cours
-            </span>
-            <BigCountdown target={LAUNCH_AT} />
-          </div>
+      <div className="mx-auto max-w-6xl">
+        {/* Carte luxe avec bordure dégradée */}
+        <div className="rounded-[2.5rem] bg-gradient-to-br from-white/90 via-white/80 to-white/70 p-[1px] shadow-[0_24px_80px_rgba(176,51,116,0.35)]">
+          <div className="rounded-[2.4rem] bg-gradient-to-br from-white/92 via-[#FFEAF5]/90 to-white/95 px-6 py-7 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+            {/* GRID PRINCIPALE */}
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)] items-start">
+              {/* COL GAUCHE */}
+              <section className="flex flex-col gap-6">
+                {/* Logo + nom */}
+                <div className="flex flex-col items-center lg:items-start gap-5">
+                  <div className="relative">
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-[#F9A8D4] via-[#fb82c1] to-[#fde7f5] blur-xl opacity-80" />
+                    <Image
+                      src={BRAND.logo}
+                      alt={BRAND.name}
+                      width={120}
+                      height={120}
+                      priority
+                      className="relative rounded-full shadow-2xl border-[3px] border-white object-cover"
+                    />
+                  </div>
+                  <div className="text-center lg:text-left space-y-1">
+                    <p className="text-[11px] tracking-[0.3em] uppercase text-[#b05a7b]">
+                      Salon de coiffure
+                    </p>
+                    <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#2b1019]">
+                      {BRAND.name}
+                    </h1>
+                  </div>
+                </div>
 
-          {/* Infos pratiques */}
-          <section className="w-full mt-4">
-            <div className="grid w-full gap-4 sm:grid-cols-3">
-              <InfoCard
-                k="Adresse"
-                v={
-                  <a
-                    href={BRAND.addressLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                  >
-                    {BRAND.address}
-                  </a>
-                }
-              />
-              <InfoCard
-                k="Instagram"
-                v={
-                  <a
-                    href={BRAND.instagramLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                    aria-label="Ouvrir Instagram RR COIFFURE"
-                  >
-                    {BRAND.instagram}
-                  </a>
-                }
-              />
-              <InfoCard k="Horaires" v={BRAND.hours} />
-            </div>
-          </section>
+                {/* Badge + countdown */}
+                <div className="space-y-4">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] sm:text-xs shadow-sm border border-[#F9A8D4]/80">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-[#fb7185] opacity-60 animate-ping" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#EC4899]" />
+                    </span>
+                    Site en maintenance – ouverture prochaine
+                  </span>
 
-          {/* Galerie */}
-          <section className="w-full mt-10">
-            <h2 className="text-left text-base font-semibold mb-4"></h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {GALLERY.map((img, idx) => (
-                <li key={img.id}>
-                  <button
-                    type="button"
-                    onClick={() => setLightbox(idx)}
-                    className="group block w-full outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E98AC3] rounded-3xl"
-                  >
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-lg">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                        priority={idx < 2}
+                  <BigCountdown target={LAUNCH_AT} />
+                </div>
+
+                {/* Cartes info luxe */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 max-w-md">
+                  <InfoCard
+                    k="Instagram"
+                    v={BRAND.instagram}
+                    link={BRAND.instagramLink}
+                  />
+                  <InfoCard k="Contact mail" v={BRAND.email} />
+                  <InfoCard
+                    k="En ce moment"
+                    v="Le salon reste ouvert, suivez nos dernières créations sur Instagram."
+                  />
+                  <InfoCard
+                    k="Style"
+                    v="Colorations, balayages et coiffures sur mesure."
+                  />
+                </div>
+              </section>
+
+              {/* COL DROITE – GALERIE + ESPACE RÉSERVÉ */}
+              <section className="flex flex-col gap-8">
+                {/* HEADER GALERIE */}
+                <header className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <div className="h-[2px] w-10 rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899]" />
+                    <span className="text-[11px] tracking-[0.22em] uppercase text-[#a0526e]">
+                      Quelques réalisations
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-[#7a3f55]">
+                    Un aperçu de l’univers RR COIFFURE pendant la mise à jour du site.
+                  </p>
+                </header>
+
+                {/* GALERIE */}
+                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                  {GALLERY.map((img, idx) => (
+                    <li key={img.id}>
+                      <button
+                        type="button"
+                        onClick={() => setLightbox(idx)}
+                        className="group block w-full rounded-3xl outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F472B6] focus:ring-offset-[#FCE7F3] transition-transform duration-150 hover:-translate-y-1 hover:shadow-xl"
+                      >
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-[#FDF2F8] border border-white/80 shadow-md">
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            fill
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                          />
+                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-70" />
+                        </div>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* ESPACE RÉSERVÉ – ALIGNÉ SOUS LA GALERIE */}
+                <section className="rounded-2xl bg-white/85 border border-[#F9A8D4]/80 px-5 py-6 sm:px-7 sm:py-7 shadow-sm">
+                  <h2 className="text-sm font-semibold text-[#3a1020]">
+                    Espace réservé
+                  </h2>
+                  <p className="text-[11px] sm:text-xs text-[#7b4256] mt-1 mb-4">
+                    Accès privé à l’équipe RR COIFFURE pour activer le site et gérer le contenu.
+                  </p>
+
+                  <form onSubmit={handleLogin} className="grid gap-3 max-w-md">
+                    <label
+                      htmlFor="admin-pass"
+                      className="text-[11px] text-[#7b4256]"
+                    >
+                      Code d’accès
+                    </label>
+                    <div className="flex items-stretch gap-2">
+                      <input
+                        id="admin-pass"
+                        type={show ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="••••••••••"
+                        autoComplete="current-password"
+                        className={`w-full rounded-lg border bg-white px-3 py-2 text-sm text-[#2b1019] placeholder:text-[#d199b5] focus:outline-none focus:ring-2 focus:ring-[#F472B6] ${inputBorder}`}
+                        aria-invalid={!!error}
                       />
+                      <button
+                        type="button"
+                        onClick={() => setShow((s) => !s)}
+                        className="rounded-lg border border-[#F9A8D4] bg-white px-3 py-2 text-[11px] sm:text-xs text-[#3a1020] hover:bg-[#FCE7F3] transition-colors"
+                      >
+                        {show ? "Masquer" : "Afficher"}
+                      </button>
                     </div>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </section>
 
-          {/* Espace réservé */}
-          <div className="mt-10 w-full rounded-2xl bg-white/75 p-6 shadow">
-            <h2 className="text-sm font-medium mb-3">Espace réservé</h2>
-            <form onSubmit={handleLogin} className="grid gap-3 text-left">
-              <label className="text-xs text-black/60" htmlFor="admin-pass">
-                Code d’accès
-              </label>
-              <div className="flex items-stretch gap-2">
-                <input
-                  id="admin-pass"
-                  type={show ? "text" : "password"}
-                  placeholder="••••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#E98AC3]"
-                  autoComplete="current-password"
-                  aria-invalid={!!error}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShow((s) => !s)}
-                  className="rounded-lg border px-3 py-2 text-sm hover:bg-black/5"
-                >
-                  {show ? "Masquer" : "Afficher"}
-                </button>
-              </div>
+                    {error && (
+                      <p className="text-xs text-red-500 mt-1">
+                        {error}
+                      </p>
+                    )}
 
-              {error && <div className="text-sm text-red-600">{error}</div>}
+                    <div className="mt-2 flex items-center justify-between">
+                      <button
+                        type="submit"
+                        disabled={loading || !password.trim()}
+                        className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-5 py-2.5 text-sm sm:text-base font-medium text-white shadow-md disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-150 hover:shadow-lg hover:-translate-y-0.5"
+                      >
+                        <span>Se connecter</span>
+                      </button>
+                    </div>
+                  </form>
+                </section>
+              </section>
+            </div>
 
-              <div className="mt-1 flex items-center justify-between">
-                <button
-                  type="submit"
-                  disabled={loading || !password.trim()}
-                  className="rounded-lg bg-[#E98AC3] px-4 py-2 text-white disabled:opacity-60"
-                >
-                  {loading ? "Connexion..." : "Se connecter"}
-                </button>
-                {/* Aucun bouton Déconnexion ici */}
-              </div>
-            </form>
+            {/* FOOTER GLOBAL */}
+            <footer className="mt-6 text-center text-[11px] text-[#8b4b60]">
+              © {new Date().getFullYear()} {BRAND.name}. Tous droits réservés.
+            </footer>
           </div>
-
-          <footer className="pt-4 text-center text-xs text-black/60">
-            © {new Date().getFullYear()} {BRAND.name}. Tous droits réservés.
-          </footer>
         </div>
       </div>
 
-      {/* Lightbox améliorée */}
+      {/* LIGHTBOX LUXE */}
       {lightbox !== null && (
         <div
           role="dialog"
@@ -293,28 +338,56 @@ export default function MaintenancePage() {
           onClick={() => setLightbox(null)}
         >
           <div
-            className="relative max-w-6xl w-full"
+            className="relative max-w-5xl w-full"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightbox(null);
-              }}
-              className="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white text-black w-8 h-8 flex items-center justify-center rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E98AC3]"
-              aria-label="Fermer l’image"
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/95 text-[#2b1019] text-xl shadow-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F472B6]"
             >
               ×
             </button>
 
-            <div className="relative w-full aspect-[16/10] overflow-hidden rounded-3xl shadow-lg">
+            {/* flèche gauche */}
+            <button
+              type="button"
+              onClick={() =>
+                setLightbox((idx) => {
+                  if (idx === null) return null;
+                  const len = GALLERY.length;
+                  return (idx - 1 + len) % len;
+                })
+              }
+              className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 items-center justify-center rounded-full bg-white/95 text-[#2b1019] shadow-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F472B6]"
+              aria-label="Image précédente"
+            >
+              ‹
+            </button>
+
+            {/* flèche droite */}
+            <button
+              type="button"
+              onClick={() =>
+                setLightbox((idx) => {
+                  if (idx === null) return null;
+                  const len = GALLERY.length;
+                  return (idx + 1) % len;
+                })
+              }
+              className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 items-center justify-center rounded-full bg-white/95 text-[#2b1019] shadow-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F472B6]"
+              aria-label="Image suivante"
+            >
+              ›
+            </button>
+
+            <div className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden bg-black shadow-[0_24px_80px_rgba(0,0,0,0.6)] border border-white/40">
               <Image
                 src={GALLERY[lightbox].src}
                 alt={GALLERY[lightbox].alt}
                 fill
                 sizes="90vw"
-                className="object-contain bg-white"
+                className="object-contain"
                 priority
               />
             </div>
@@ -328,11 +401,34 @@ export default function MaintenancePage() {
 // -----------------------------------------------------------------------------
 // INFO CARD
 // -----------------------------------------------------------------------------
-function InfoCard({ k, v }: { k: string; v: React.ReactNode }) {
+function InfoCard({
+  k,
+  v,
+  link,
+}: {
+  k: string;
+  v: string;
+  link?: string;
+}) {
+  const content = link ? (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium text-sm sm:text-[15px] text-[#2b1019] hover:underline"
+    >
+      {v}
+    </a>
+  ) : (
+    <p className="font-medium text-sm sm:text-[15px] text-[#2b1019]">{v}</p>
+  );
+
   return (
-    <div className="rounded-2xl bg-white/75 p-4 shadow text-left">
-      <p className="text-xs text-black/60">{k}</p>
-      <p className="font-medium">{v}</p>
+    <div className="rounded-2xl bg-white/90 border border-[#F9A8D4]/70 p-3.5 sm:p-4 shadow-sm transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#F472B6] text-left">
+      <p className="text-[10px] sm:text-[11px] text-[#b2647f] uppercase tracking-[0.18em]">
+        {k}
+      </p>
+      <div className="mt-1.5">{content}</div>
     </div>
   );
 }
