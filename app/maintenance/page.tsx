@@ -257,9 +257,6 @@ export default function MaintenancePage() {
                   <h2 className="text-sm font-semibold text-[#3a1020]">
                     Espace réservé
                   </h2>
-                  <p className="text-[11px] sm:text-xs text-[#7b4256] mt-1 mb-4">
-                    Accès privé à l’équipe RR COIFFURE pour activer le site et gérer le contenu.
-                  </p>
 
                   <form onSubmit={handleLogin} className="grid gap-3 max-w-md">
                     <label htmlFor="admin-pass" className="text-[11px] text-[#7b4256]">
