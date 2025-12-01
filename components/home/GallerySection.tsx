@@ -39,55 +39,59 @@ export default function GallerySection() {
     <section
       id="galerie"
       aria-labelledby="gallery-title"
-      className="relative bg-gradient-to-b from-white to-[#ffe7f2]/40 py-20"
+      className="relative py-24 bg-gradient-to-b from-white to-[#ffe7f2]/40"
     >
-      {/* halos décoratifs */}
+      {/* Halos premium */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
-        <div className="absolute left-10 top-0 h-40 w-40 rounded-full bg-pink-200/40 blur-3xl" />
-        <div className="absolute right-10 bottom-0 h-40 w-40 rounded-full bg-purple-200/40 blur-3xl" />
+        <div className="absolute left-20 top-10 h-48 w-48 rounded-full bg-pink-200/40 blur-3xl" />
+        <div className="absolute right-20 bottom-10 h-48 w-48 rounded-full bg-purple-200/40 blur-3xl" />
       </div>
 
-      <div className="container mx-auto max-w-6xl px-4">
-        {/* Header section */}
-        <div className="mx-auto mb-10 max-w-2xl text-center space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#fff7fb] px-3 py-1 text-xs font-medium text-[#ec4899] ring-1 ring-pink-100/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#ec4899]" />
-            <span>Galerie</span>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Titre section */}
+        <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-medium text-[#b05a7b] border border-[#F9A8D4]/60 uppercase tracking-[0.22em]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
+            Galerie
           </div>
+
           <h2
             id="gallery-title"
-            className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl"
+            className="text-3xl font-extrabold tracking-tight text-[#2b1019] md:text-4xl"
           >
             Un aperçu de nos{" "}
-            <span className="bg-gradient-to-r from-[#ec4899] via-[#a855f7] to-[#ec4899] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#F472B6] via-[#EC4899] to-[#F97316] bg-clip-text text-transparent">
               réalisations
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
-            Balayages, colorations, tresses, soins et coupes pour tous les styles.
+
+          <p className="text-sm sm:text-base text-[#7b4256]">
+            Balayages, colorations, tresses et soins réalisés au salon RR Coiffure.
           </p>
         </div>
 
-        {/* Grille d’images */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:gap-5">
+        {/* Grille premium (sans cadre global) */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
           {galleryItems.map((item, index) => (
             <figure
               key={index}
-              className="group relative overflow-hidden rounded-2xl bg-[#fdf2f8] shadow-sm ring-1 ring-white/70 transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-[1.7rem] shadow-[0_16px_45px_rgba(176,51,116,0.18)] ring-1 ring-white/70 bg-white/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(176,51,116,0.26)]"
             >
+              {/* Image + ratio */}
               <div className="relative aspect-[4/5] w-full">
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-                  className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
                 />
               </div>
 
-              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-black/55 via-black/20 to-transparent px-3 pb-2 pt-5 text-[11px] text-white">
+              {/* Overlay premium */}
+              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/55 via-black/20 to-transparent px-4 pb-3 pt-6 text-[12px] text-white">
                 <span className="truncate font-medium">{item.label}</span>
-                <span className="hidden rounded-full bg-white/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] md:inline-block">
+                <span className="hidden rounded-full bg-white/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] md:block">
                   RR COIFFURE
                 </span>
               </figcaption>
@@ -95,22 +99,22 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* BOUTON INSTAGRAM */}
-        <div className="mt-10 flex justify-center">
+        {/* CTA Instagram */}
+        <div className="mt-10 flex flex-col items-center gap-2">
           <Link
             href="https://www.instagram.com/rr.coiffure/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f472b6] to-[#ec4899] px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-7 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
             Voir plus sur Instagram
             <span aria-hidden="true">↗</span>
           </Link>
-        </div>
 
-        <p className="mt-4 text-center text-xs text-slate-500">
-          Nouvelles photos ajoutées chaque semaine.
-        </p>
+          <p className="text-center text-[11px] text-[#7b4256]">
+            Photos réelles réalisées au salon RR Coiffure.
+          </p>
+        </div>
       </div>
     </section>
   )

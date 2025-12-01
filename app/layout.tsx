@@ -6,10 +6,8 @@ import "./globals.css";
 
 import AdminControls from "@/components/AdminControls";
 
-// --- Police Google -----------------------------------------------------------
 const inter = Inter({ subsets: ["latin"] });
 
-// --- Métadonnées SEO spécifiques à la page maintenance -----------------------
 export const metadata: Metadata = {
   title: "RR COIFFURE — Maintenance",
   description:
@@ -44,22 +42,14 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
-// --- Layout global -----------------------------------------------------------
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // On récupère le chemin via process.env ou un hook côté client
-  // mais ici, AdminControls masque déjà /maintenance, donc il peut rester monté partout.
   return (
     <html lang="fr" className={inter.className}>
-      <body className="font-sans antialiased relative">
-        {/* Contenu principal (page maintenance ou site) */}
+      <body className="relative font-sans antialiased overflow-x-hidden">
         {children}
-
-        {/* Bouton de déconnexion admin (affiché seulement si cookie présent et pas sur /maintenance) */}
         <AdminControls />
-
-        {/* Outils de suivi */}
         <Analytics />
       </body>
     </html>

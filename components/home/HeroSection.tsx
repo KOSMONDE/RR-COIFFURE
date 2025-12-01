@@ -7,136 +7,116 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-gradient-to-br from-[#ffe6f5] via-[#ffe8fb] to-[#fdf7ff] py-16 sm:py-24"
       aria-labelledby="hero-title"
+      className="relative overflow-hidden py-16 sm:py-24"
     >
-      {/* Fond luxe */}
+      {/* Fond premium doux */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.9)_0,transparent_55%),radial-gradient(circle_at_100%_100%,rgba(244,114,182,0.16)_0,transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(255,226,244,0.8),transparent_70%),radial-gradient(circle_at_80%_100%,rgba(236,72,153,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 opacity-[0.08] mix-blend-soft-light bg-[url('/textures/noise.png')]" />
       </div>
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-8">
-        {/* Col texte */}
-        <div className="max-w-xl space-y-7">
-          {/* Badge premium */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#ec4899] shadow-sm ring-1 ring-pink-100/80">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>SALON PREMIUM À LAUSANNE</span>
-          </div>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-center">
+          
+          {/* TEXTE */}
+          <div className="space-y-8 max-w-xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-[11px] font-medium text-[#EC4899] shadow-sm border border-pink-100 uppercase tracking-[0.20em]">
+              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+              Salon premium à Genève
+            </div>
 
-          {/* Titre principal */}
-          <div className="space-y-3">
             <h1
               id="hero-title"
-              className="text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-[#2b1019]"
             >
-              Transformez
-              <br />
-              votre{" "}
-              <span className="bg-gradient-to-r from-[#ec4899] via-[#a855f7] to-[#ec4899] bg-clip-text text-transparent">
+              Transformez votre{" "}
+              <span className="bg-gradient-to-r from-[#F472B6] via-[#EC4899] to-[#F97316] bg-clip-text text-transparent">
                 beauté
               </span>
             </h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Découvrez un univers de luxe et de créativité. Nos experts maîtrisent les dernières
-              techniques de coupe, coloration et balayage pour sublimer vos cheveux, en douceur.
+
+            <p className="text-sm sm:text-base text-[#7b4256] leading-relaxed">
+              RR Coiffure vous accueille dans un univers de douceur et d’expertise.
+              Coupes, balayages, colorations : nous sublimons vos cheveux tout en
+              respectant leur nature.
             </p>
+
+            {/* Points clés */}
+            <dl className="grid gap-3 text-sm sm:grid-cols-2">
+              <div className="flex items-start gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FDE7F3] text-[#EC4899]">
+                  <Star className="h-3.5 w-3.5" />
+                </div>
+                <div>
+                  <dt className="text-sm font-semibold text-[#2b1019]">Conseils personnalisés</dt>
+                  <dd className="text-xs text-[#8b4b60]">Diagnostic complet avant chaque prestation.</dd>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FDE7F3] text-[#EC4899]">
+                  <Scissors className="h-3.5 w-3.5" />
+                </div>
+                <div>
+                  <dt className="text-sm font-semibold text-[#2b1019]">Techniques modernes</dt>
+                  <dd className="text-xs text-[#8b4b60]">Balayages, colorations et coupes sur-mesure.</dd>
+                </div>
+              </div>
+            </dl>
+
+            {/* CTA */}
+            <div className="flex flex-wrap items-center gap-4">
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-8 text-sm font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+              >
+                <Link href="/#reservation">Réserver maintenant</Link>
+              </Button>
+
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-full border-[#F9A8D4] bg-white/90 px-8 text-sm font-semibold text-[#EC4899] shadow-sm hover:bg-[#FDE7F3] hover:border-[#EC4899]"
+              >
+                <Link href="#services">Nos services</Link>
+              </Button>
+            </div>
           </div>
 
-          {/* Points de réassurance */}
-          <dl className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-            <div className="flex items-center gap-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#fee2f2] text-[#ec4899]">
-                <Star className="h-3.5 w-3.5" aria-hidden="true" />
-              </div>
-              <div>
-                <dt className="font-medium">Conseils personnalisés</dt>
-                <dd className="text-xs text-slate-500">
-                  Diagnostic beauté avant chaque prestation.
-                </dd>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#fee2f2] text-[#ec4899]">
-                <Scissors className="h-3.5 w-3.5" aria-hidden="true" />
-              </div>
-              <div>
-                <dt className="font-medium">Techniques modernes</dt>
-                <dd className="text-xs text-slate-500">
-                  Balayages, colorations et coupes tendance.
-                </dd>
-              </div>
-            </div>
-          </dl>
+          {/* VISUEL */}
+          <div className="relative flex justify-center">
+            {/* Halo */}
+            <div className="absolute h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-[#f9a8d4]/40 blur-3xl" />
 
-          {/* CTA */}
-          <div className="flex flex-wrap items-center gap-4">
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full bg-gradient-to-r from-[#f472b6] to-[#ec4899] px-7 text-sm font-semibold shadow-lg hover:from-[#ec4899] hover:to-[#f472b6]"
-            >
-              <Link href="https://www.snailscreation.com/book-online">
-                Réserver maintenant
-              </Link>
-            </Button>
-
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full border-[#f472b6]/60 bg-white/80 px-7 text-sm font-semibold text-[#ec4899] shadow-sm hover:bg-[#ffe6f5] hover:border-[#ec4899]"
-            >
-              <Link href="#services">Découvrir nos services</Link>
-            </Button>
-
-            <p className="w-full text-xs text-slate-500 sm:w-auto">
-              Temps moyen en salon : <span className="font-medium">60–90 min</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Col visuel premium */}
-        <div className="relative flex flex-1 items-center justify-center">
-          {/* Halo */}
-          <div className="pointer-events-none absolute h-72 w-72 rounded-full bg-[#f9a8d4]/40 blur-3xl sm:h-80 sm:w-80" />
-
-          {/* Cercle principal */}
-          <div className="relative h-60 w-60 rounded-full border border-[#f9a8d4]/80 bg-gradient-to-br from-white/90 via-[#ffe4f5]/85 to-white/95 shadow-[0_24px_80px_rgba(236,72,153,0.35)] sm:h-72 sm:w-72">
-            <div className="absolute inset-[12%] rounded-full border border-white/70" />
-            <div className="relative flex h-full w-full flex-col items-center justify-center gap-2">
+            {/* Logo */}
+            <div className="relative h-56 w-56 sm:h-72 sm:w-72 rounded-full bg-gradient-to-br from-white/95 via-[#FFEAF5]/90 to-white/95 shadow-[0_18px_60px_rgba(176,51,116,0.32)] border border-pink-100/60 flex flex-col items-center justify-center gap-3">
               <Image
                 src="/images/galerie/rr-logo.jpg"
                 alt="RR Coiffure"
-                width={100}
-                height={100}
-                className="rounded-full border border-pink-200 bg-white shadow-md"
+                width={130}
+                height={130}
+                className="rounded-full border border-pink-200 bg-white shadow-md object-cover"
               />
-              <span className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                SALON DE COIFFURE
+              <span className="text-[11px] uppercase tracking-[0.18em] text-[#8b4b60]">
+                Salon de coiffure
               </span>
-            </div>
-
-            {/* Pastilles flottantes */}
-            <div className="pointer-events-none absolute -left-3 top-8 hidden rounded-2xl bg-white/90 px-3 py-2 text-[11px] font-medium text-slate-700 shadow-md ring-1 ring-pink-100 sm:flex">
-              + de 10 ans d&apos;expertise
-            </div>
-            <div className="pointer-events-none absolute -right-4 bottom-8 hidden rounded-2xl bg-white/90 px-3 py-2 text-[11px] font-medium text-slate-700 shadow-md ring-1 ring-pink-100 sm:flex">
-              Colorations sur mesure
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Indication scroll sans onClick (pas d’event handler) */}
-      <div className="mt-10 flex justify-center">
-        <a
-          href="#services"
-          className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-medium text-slate-500 shadow-sm ring-1 ring-pink-100 hover:bg-white"
-        >
-          <span>Faire défiler pour voir les services</span>
-          <span aria-hidden="true">↓</span>
-        </a>
+        {/* Indication scroll */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#services"
+            className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[11px] font-medium text-[#7b4256] shadow-sm border border-pink-100 hover:bg-white"
+          >
+            Faire défiler
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
       </div>
     </section>
   )
