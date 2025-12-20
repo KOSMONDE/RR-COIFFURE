@@ -253,7 +253,7 @@ export default function SiteHeader({ items = DEFAULT_NAV_ITEMS }: SiteHeaderProp
                 size="sm"
                 className="rounded-full bg-[#EC4899] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6]"
               >
-                <a href="tel:+41211234567" aria-label="Appeler le salon">
+                <a href="tel:+41762920712" aria-label="Appeler le salon">
                   <span className="inline-flex items-center gap-2">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                     Appeler

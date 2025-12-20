@@ -4,18 +4,17 @@ import { useMemo, useState, type MouseEvent } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Star, Scissors, Phone, ArrowRight, ArrowDown, Leaf, Clock3, ShieldCheck, Heart } from "lucide-react"
+import { Sparkles, Star, Phone, ArrowRight, ArrowDown } from "lucide-react"
 
 const HERO_SHOTS = [
   { id: "main", src: "/images/galerie/4.jpeg", alt: "Balayage blond lumineux – RR COIFFURE Genève", tag: "Balayage & soin" },
   { id: "balayage", src: "/images/galerie/1.jpeg", alt: "Balayage caramel sur mesure – RR COIFFURE Genève", tag: "Sur-mesure" },
 ]
 
-const KEY_POINTS = [
-  { title: "Diagnostic offert", desc: "Analyse personnalisée avant chaque rendez-vous.", icon: Star },
-  { title: "Experts couleur", desc: "Balayages précis, coupes nettes, résultats naturels.", icon: Scissors },
-  { title: "Produits clean", desc: "Formules respectueuses de la fibre et des longueurs.", icon: Leaf },
-  { title: "Réponse sous 2h", desc: "Confirmations rapides pour vos demandes.", icon: Clock3 },
+const PROOF_CHIPS = [
+  { label: "4.9/5 Google", icon: Star },
+  { label: "Diagnostic offert", icon: Sparkles },
+  { label: "Réponse < 2h", icon: Sparkles },
 ]
 
 export default function HeroSection() {
@@ -34,13 +33,10 @@ export default function HeroSection() {
     const el = document.getElementById(id)
     if (!el) return
 
-    // Offset header sticky (ajuste si ton header change)
     const headerOffset = 80
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffset
 
-    // met à jour l’URL sans saut
     if (window.location.hash !== href) history.pushState(null, "", href)
-
     window.scrollTo({ top, behavior: "smooth" })
   }
 
@@ -48,7 +44,7 @@ export default function HeroSection() {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]"
+      className="relative overflow-hidden bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
     >
       {/* Fond premium */}
       <div className="pointer-events-none absolute inset-0">
@@ -58,12 +54,87 @@ export default function HeroSection() {
       </div>
 
       <div className="mx-auto max-w-6xl px-6 md:px-10">
-        <div className="grid gap-10 items-start lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-stretch">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+          {/* TEXTE (sans gros cadre) */}
+          <div className="order-1">
+            <div className="mx-auto flex max-w-xl flex-col gap-6 lg:mx-0">
+              {/* Badge */}
+              <div className="mx-auto inline-flex w-fit items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/70 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.20em] text-[#7b4256] shadow-sm lg:mx-0">
+                <Sparkles className="h-3.5 w-3.5 text-[#EC4899]" aria-hidden="true" />
+                Salon premium à Genève
+              </div>
+
+              {/* Titre */}
+              <h1
+                id="hero-title"
+                className="text-center font-display text-4xl font-extrabold leading-tight tracking-tight text-[#2b1019] sm:text-5xl md:text-6xl lg:text-left"
+              >
+                Révélez l’<span className="text-[#EC4899]">éclat naturel</span> de vos cheveux
+              </h1>
+
+              {/* Copy */}
+              <p className="text-center text-sm leading-relaxed text-[#7b4256] sm:text-base md:text-lg lg:text-left">
+                Balayages lumineux, soins profonds et coupes sur-mesure. Un résultat durable, pensé pour votre quotidien.
+              </p>
+
+              {/* Proof chips */}
+              <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+                {PROOF_CHIPS.map(({ label, icon: Icon }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/70 px-3 py-1.5 text-[11px] font-semibold text-[#2b1019] shadow-sm"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-[#EC4899]" aria-hidden="true" />
+                    {label}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3] active:translate-y-0 sm:w-auto"
+                >
+                  <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                    <span className="inline-flex items-center gap-2">
+                      Réserver en ligne
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full rounded-full border-[#EC4899] bg-white/80 px-7 text-sm font-semibold text-[#EC4899] shadow-sm transition-colors hover:border-[#F472B6] hover:bg-[#FDE7F3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3] active:translate-y-0 sm:w-auto"
+                >
+                  <a href="tel:+41211234567" aria-label="Appeler le salon">
+                    <span className="inline-flex items-center gap-2">
+                      <Phone className="h-4 w-4" aria-hidden="true" />
+                      Appeler
+                    </span>
+                  </a>
+                </Button>
+
+                <Link
+                  href="/tarifs"
+                  className="mx-auto text-xs font-semibold text-[#7b4256] underline underline-offset-4 transition-colors hover:text-[#2b1019] sm:mx-0"
+                >
+                  Voir les tarifs
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* VISUEL */}
-          <div className="relative flex h-full items-start justify-center order-2 lg:order-1">
-            <div className="relative flex h-full w-full max-w-lg flex-col gap-4">
-              <div className="flex-1 overflow-hidden rounded-[1.5rem] border border-[#F9A8D4]/50 bg-[#FDF2F8] shadow-[0_20px_60px_rgba(236,72,153,0.18)]">
-                <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-auto lg:h-full">
+          <div className="order-2">
+            <div className="relative mx-auto flex w-full max-w-xl flex-col gap-4 lg:mx-0">
+              {/* Image principale */}
+              <div className="relative overflow-hidden rounded-[1.6rem] border border-[#F9A8D4]/50 bg-white/40 shadow-[0_22px_70px_rgba(236,72,153,0.20)] backdrop-blur">
+                <div className="relative aspect-[4/3] sm:aspect-[5/4]">
                   <Image
                     key={activeShot.src}
                     src={activeShot.src}
@@ -73,11 +144,17 @@ export default function HeroSection() {
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+                  {/* Tag flottant */}
+                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[11px] font-semibold text-white/95 backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
+                    {activeShot.tag}
+                  </div>
                 </div>
               </div>
 
-              {/* Mini vignettes épurées */}
+              {/* Vignettes */}
               <div className="grid grid-cols-2 gap-3">
                 {HERO_SHOTS.map((shot) => {
                   const isActive = shot.id === activeShotId
@@ -87,33 +164,22 @@ export default function HeroSection() {
                       type="button"
                       onClick={() => setActiveShotId(shot.id)}
                       aria-pressed={isActive}
-                      aria-current={isActive ? "true" : undefined}
                       className={[
-                        "group relative overflow-hidden rounded-2xl border bg-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40",
+                        "relative overflow-hidden rounded-2xl border bg-white/70 shadow-sm transition",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3]",
                         isActive
-                          ? "border-[#EC4899]/60 shadow-[0_12px_26px_rgba(236,72,153,0.18)]"
-                          : "border-[#F9A8D4]/50 hover:border-[#EC4899]/50 hover:shadow-[0_12px_26px_rgba(236,72,153,0.16)]",
+                          ? "border-[#EC4899]/60 shadow-[0_12px_28px_rgba(236,72,153,0.18)]"
+                          : "border-[#F9A8D4]/60 hover:border-[#EC4899]/55 hover:shadow-[0_12px_28px_rgba(236,72,153,0.14)]",
                       ].join(" ")}
                       aria-label={`Afficher : ${shot.tag}`}
                     >
                       <div className="relative aspect-[4/3]">
-                        <Image
-                          src={shot.src}
-                          alt={shot.alt}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 33vw, 180px"
-                        />
+                        <Image src={shot.src} alt={shot.alt} fill className="object-cover" sizes="200px" />
                       </div>
-                      <div className="px-2 py-2">
-                        <p
-                          className={[
-                            "truncate text-[11px] font-semibold",
-                            isActive ? "text-[#7b4256]" : "text-[#a0526e] group-hover:text-[#7b4256]",
-                          ].join(" ")}
-                        >
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent px-3 pb-2 pt-6">
+                        <span className="inline-flex rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur">
                           {shot.tag}
-                        </p>
+                        </span>
                       </div>
                     </button>
                   )
@@ -121,89 +187,14 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
-          {/* TEXTE */}
-          <div className="order-1 lg:order-2">
-            <div className="mx-auto flex w-full max-w-xl flex-col gap-8 rounded-3xl border border-[#F9A8D4]/40 bg-[#FDE7F3]/60 p-6 shadow-[0_16px_40px_rgba(236,72,153,0.12)] backdrop-blur lg:mx-0 sm:p-7">
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-semibold text-[#7b4256] shadow-sm border border-[#F9A8D4]/50 uppercase tracking-[0.20em] lg:mx-0">
-                <Sparkles className="h-3.5 w-3.5 text-[#EC4899]" aria-hidden="true" />
-                Salon premium à Genève
-              </div>
-
-              <h1
-                id="hero-title"
-                className="text-center font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-[#2b1019] lg:text-left"
-              >
-                Révélez l’{" "}
-                <span className="text-[#EC4899]">éclat naturel</span> de vos cheveux
-              </h1>
-
-              <div className="space-y-4">
-                <p className="text-center text-sm sm:text-base md:text-lg text-[#7b4256] leading-relaxed lg:text-left">
-                  Balayages lumineux, soins profonds et coupes sur-mesure. Une expérience premium qui respecte la fibre
-                  et révèle l’éclat.
-                </p>
-
-                {/* Points clés */}
-                <dl className="grid grid-cols-2 gap-3 text-sm">
-                  {KEY_POINTS.map(({ title, desc, icon: Icon }) => (
-                    <div key={title} className="flex items-start gap-2">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-full text-[#EC4899]">
-                        <Icon className="h-4 w-4" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <dt className="text-sm font-semibold text-[#2b1019]">{title}</dt>
-                        <dd className="min-h-[2.5rem] text-xs text-[#7b4256]">{desc}</dd>
-                      </div>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-auto space-y-2">
-                <div className="flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] sm:w-auto"
-                  >
-                    <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noreferrer">
-                      <span className="inline-flex items-center gap-2">
-                        Réserver en ligne
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </span>
-                    </Link>
-                  </Button>
-
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="w-full rounded-full border-[#EC4899] bg-white px-7 text-sm font-semibold text-[#EC4899] shadow-sm hover:border-[#F472B6] hover:bg-[#FDE7F3] sm:w-auto"
-                  >
-                    <a href="tel:+41211234567" aria-label="Appeler le salon">
-                      <span className="inline-flex items-center gap-2">
-                        <Phone className="h-4 w-4" aria-hidden="true" />
-                        Appeler le salon
-                      </span>
-                    </a>
-                  </Button>
-                </div>
-
-              </div>
-
-              {/* Chips de navigation rapide supprimés */}
-            </div>
-          </div>
         </div>
 
-        {/* Indication scroll */}
-        <div className="mt-8 flex justify-center sm:mt-10">
+        {/* Scroll cue (moins agressif que bounce) */}
+        <div className="mt-10 flex justify-center">
           <a
             href="#services"
             onClick={(e) => scrollToHash(e, "#services")}
-            className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/50 bg-[#FDF2F8]/80 px-6 py-2.5 text-xs font-semibold text-[#7b4256] shadow-sm hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 motion-safe:animate-bounce motion-reduce:animate-none"
+            className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/50 bg-[#FDF2F8]/80 px-6 py-2.5 text-xs font-semibold text-[#7b4256] shadow-sm transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3]"
           >
             Découvrir nos services
             <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />

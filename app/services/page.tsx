@@ -32,7 +32,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative mx-auto max-w-6xl px-6 md:px-10">
-            <div className="mx-auto max-w-3xl text-center space-y-4">
+            <div className="mx-auto max-w-5xl text-center space-y-4">
               <p className="inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a0526e] ring-1 ring-[#F9A8D4]/60">
                 Services
               </p>

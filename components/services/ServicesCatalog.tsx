@@ -26,10 +26,12 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
 
   return (
     <>
+      {/* Barre filtres sticky */}
       <section className="sticky top-16 z-30 border-b border-[#F9A8D4]/60 bg-[#FDF2F8]/90 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl px-6 md:px-10 py-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2">
+        <div className="mx-auto max-w-6xl px-6 py-4 md:px-10">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            {/* Filtres (scrollable sur mobile) */}
+            <div className="-mx-2 flex items-center gap-2 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {filterCategories.map((category) => {
                 const isActive = activeFilter === category
                 return (
@@ -41,7 +43,7 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
                     onClick={() => setActiveFilter(category)}
                     aria-pressed={isActive}
                     className={cn(
-                      "rounded-full px-4 py-2 text-[11px] font-semibold transition-all",
+                      "shrink-0 rounded-full px-4 py-2 text-[11px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8]",
                       isActive
                         ? "bg-[#EC4899] text-white shadow-lg shadow-[#EC4899]/30 hover:bg-[#F472B6]"
                         : "border-[#F9A8D4]/60 bg-white text-[#7b4256] hover:bg-[#FDE7F3] hover:text-[#2b1019]"
@@ -53,30 +55,35 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
               })}
             </div>
 
+            {/* CTA */}
             <Button
               asChild
               size="sm"
-              className="rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6]"
+              className="w-full rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
             >
-              <Link href="https://www.snailscreation.com/book-online">Réserver en ligne</Link>
+              <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                Réserver en ligne
+              </Link>
             </Button>
+          </div>
+
+          {/* Micro-infos */}
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#a0526e]">
+            <span className="font-semibold uppercase tracking-[0.22em]">Nos prestations</span>
+            <span className="text-xs">Cliquez pour voir le détail</span>
           </div>
         </div>
       </section>
 
-      <section className="relative py-16 sm:py-20 bg-[#FDF2F8]">
+      {/* Liste */}
+      <section className="relative bg-[#FDF2F8] py-16 sm:py-20">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 opacity-20 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
+          <div className="absolute -left-24 top-10 h-64 w-64 rounded-full bg-[#F9A8D4]/18 blur-3xl" />
+          <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#EC4899]/12 blur-3xl" />
         </div>
 
         <div className="mx-auto max-w-6xl px-6 md:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-6">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a0526e]">
-              Nos prestations
-            </p>
-            <p className="text-xs text-[#a0526e]">Cliquez pour voir le détail</p>
-          </div>
-
           {filteredServices.length > 0 ? (
             <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-3">
               {filteredServices.map((service) => (
@@ -84,9 +91,10 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
                   key={service.slug}
                   href={`/services/${service.slug}`}
                   aria-label={`Voir le service ${service.title}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-[#F9A8D4]/40 bg-white/75 backdrop-blur-sm shadow-[0_18px_40px_rgba(236,72,153,0.12)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(236,72,153,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-[#F9A8D4]/40 bg-white/75 backdrop-blur-sm shadow-[0_18px_40px_rgba(236,72,153,0.12)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(236,72,153,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8]"
                 >
                   <article className="flex flex-1 flex-col">
+                    {/* Image */}
                     <div className="relative h-48 w-full overflow-hidden rounded-t-3xl bg-[#FDF2F8]">
                       <Image
                         src={service.imageSrc}
@@ -97,7 +105,8 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2b1019]/35 via-transparent to-transparent" />
 
-                      <div className="absolute inset-x-4 bottom-4 flex items-center justify-between text-[11px] text-white">
+                      {/* Tag + prix */}
+                      <div className="absolute inset-x-4 bottom-4 flex items-center justify-between text-[11px]">
                         <span className="rounded-full border border-[#F9A8D4]/50 bg-[#FDE7F3]/90 px-3 py-1 text-[#7b4256] backdrop-blur-md">
                           {service.tag}
                         </span>
@@ -107,16 +116,20 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
                       </div>
                     </div>
 
+                    {/* Contenu */}
                     <div className="flex flex-1 flex-col gap-3 px-5 py-5">
-                      <h3 className="text-base font-semibold text-[#2b1019]">{service.title}</h3>
-                      <p className="text-sm text-[#7b4256]">{service.excerpt}</p>
+                      <h3 className="text-base font-semibold text-[#2b1019] transition-colors group-hover:text-[#EC4899]">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-sm leading-relaxed text-[#7b4256] line-clamp-2">{service.excerpt}</p>
 
                       <div className="mt-auto flex items-center justify-between pt-2 text-xs">
                         <span className="text-[#a0526e]">
                           Durée : <span className="font-medium text-[#2b1019]">{service.duration}</span>
                         </span>
 
-                        <span className="inline-flex items-center gap-1 rounded-full border border-[#F9A8D4]/60 bg-[#FDE7F3] px-3 py-1.5 text-[11px] font-semibold text-[#EC4899] shadow-sm transition-all">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-[#F9A8D4]/60 bg-[#FDE7F3] px-3 py-1.5 text-[11px] font-semibold text-[#EC4899] shadow-sm transition-colors group-hover:border-[#EC4899]/70 group-hover:bg-[#FDE7F3]/80">
                           En savoir plus
                         </span>
                       </div>
@@ -126,8 +139,18 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
+            <div className="py-16 text-center">
               <p className="text-sm text-[#7b4256]">Aucune prestation trouvée pour cette catégorie.</p>
+              <div className="mt-5">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setActiveFilter("Tous")}
+                  className="rounded-full border-[#F9A8D4]/60 bg-white px-5 text-xs font-semibold text-[#7b4256] hover:bg-[#FDE7F3]"
+                >
+                  Réinitialiser les filtres
+                </Button>
+              </div>
             </div>
           )}
         </div>
