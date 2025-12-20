@@ -86,7 +86,7 @@ export default function ContactSection() {
                   asChild
                   className="w-full rounded-full bg-[#EC4899] px-6 py-2.5 text-xs font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
                 >
-                  <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                     Réserver en ligne
                   </Link>
                 </Button>
@@ -96,7 +96,7 @@ export default function ContactSection() {
                   variant="outline"
                   className="w-full rounded-full border-[#EC4899] bg-white px-6 py-2.5 text-xs font-semibold text-[#EC4899] shadow-sm transition-colors hover:border-[#F472B6] hover:bg-[#FDE7F3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
                 >
-                  <Link href="tel:+41211234567">Appeler le salon</Link>
+                  <Link href="tel:+41762920712">Appeler le salon</Link>
                 </Button>
 
                 <Link
@@ -133,10 +133,10 @@ export default function ContactSection() {
                 </div>
                 <p>
                   <Link
-                    href="tel:+41211234567"
+                    href="tel:+41762920712"
                     className="font-medium text-[#2b1019] transition-colors hover:text-[#EC4899]"
                   >
-                    +41 21 123 45 67
+                    +41 76 292 07 12
                   </Link>
                 </p>
                 <p className="text-[11px] text-[#7b4256]">Pour une réponse immédiate</p>

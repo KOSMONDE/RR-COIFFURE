@@ -97,7 +97,7 @@ export default function HeroSection() {
                   size="lg"
                   className="w-full rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3] active:translate-y-0 sm:w-auto"
                 >
-                  <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                     <span className="inline-flex items-center gap-2">
                       Réserver en ligne
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -111,7 +111,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="w-full rounded-full border-[#EC4899] bg-white/80 px-7 text-sm font-semibold text-[#EC4899] shadow-sm transition-colors hover:border-[#F472B6] hover:bg-[#FDE7F3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3] active:translate-y-0 sm:w-auto"
                 >
-                  <a href="tel:+41211234567" aria-label="Appeler le salon">
+                  <a href="tel:+41762920712" aria-label="Appeler le salon">
                     <span className="inline-flex items-center gap-2">
                       <Phone className="h-4 w-4" aria-hidden="true" />
                       Appeler

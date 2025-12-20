@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     images: ["/images/galerie/rr-logo.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/rr-coiffure-logo.jpg",
+    apple: "/rr-coiffure-logo.jpg",
   },
   generator: "v0.app",
 };

@@ -58,8 +58,8 @@ export default function MentionsLegalesPage() {
                   <div className="flex items-start justify-between gap-4">
                     <dt className="font-semibold text-[#2b1019]">Telephone</dt>
                     <dd className="text-right">
-                      <Link href="tel:+41211234567" className="hover:text-[#EC4899]">
-                        +41 21 123 45 67
+                      <Link href="tel:+41762920712" className="hover:text-[#EC4899]">
+                        +41 76 292 07 12
                       </Link>
                     </dd>
                   </div>

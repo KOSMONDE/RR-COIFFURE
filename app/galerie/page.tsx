@@ -46,12 +46,12 @@ export default function GaleriePage() {
                 Galerie
               </p>
 
-              <h1 className="font-display text-4xl font-extrabold tracking-tight text-[#2b1019] md:text-5xl">
+              <h1 className="font-display text-[24px] font-extrabold tracking-tight text-[#2b1019] whitespace-nowrap sm:text-4xl sm:whitespace-normal md:text-5xl">
                 Nos réalisations <span className="text-[#EC4899]">RR Coiffure</span>
               </h1>
 
-              <p className="text-sm leading-relaxed text-[#7b4256] sm:text-base">
-                Avant / Après, colorations, balayages et coiffages premium. Cliquez sur une photo pour l&apos;agrandir.
+              <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
+                Avant/Après, couleurs et coiffages premium.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function GaleriePage() {
                 size="sm"
                 className="w-full rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
               >
-                <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                   Réserver en ligne
                 </Link>
               </Button>
@@ -138,8 +138,8 @@ export default function GaleriePage() {
           <div className="relative mx-auto max-w-4xl px-6 text-center text-[#2b1019] md:px-10">
             <h2 className="font-display text-3xl font-extrabold md:text-4xl">Envie du même résultat ?</h2>
 
-            <p className="mt-3 text-sm leading-relaxed text-[#7b4256] sm:text-base">
-              Réservez votre rendez-vous et laissez nos experts sublimer votre beauté.
+            <p className="mt-3 text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
+              Réservez votre rendez-vous.
             </p>
 
             <Button
@@ -147,7 +147,7 @@ export default function GaleriePage() {
               size="lg"
               className="mt-6 rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFE5F4] active:translate-y-0"
             >
-              <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                 Prendre rendez-vous
               </Link>
             </Button>

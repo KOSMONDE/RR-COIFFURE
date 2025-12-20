@@ -58,13 +58,13 @@ export default function SiteFooter() {
 
             <div className="flex flex-col items-center gap-2 md:items-start">
               <Link
-                href="tel:+41211234567"
+                href="tel:+41762920712"
                 aria-label="Appeler le salon"
                 className="group inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/80 px-4 py-2 text-[12px] font-semibold text-[#2b1019] shadow-sm transition-colors hover:border-[#EC4899]/60 hover:bg-[#FDE7F3] hover:text-[#EC4899] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] md:w-fit md:justify-start"
               >
                 <Phone className="h-4 w-4 text-[#EC4899]" aria-hidden="true" />
                 <span>Appeler</span>
-                <span className="ml-1 text-[11px] font-medium text-[#7b4256]">+41 21 123 45 67</span>
+                <span className="ml-1 text-[11px] font-medium text-[#7b4256]">+41 76 292 07 12</span>
               </Link>
 
               <Link

@@ -61,7 +61,7 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
               size="sm"
               className="w-full rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
             >
-              <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                 Réserver en ligne
               </Link>
             </Button>

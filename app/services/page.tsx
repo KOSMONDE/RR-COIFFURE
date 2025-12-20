@@ -36,12 +36,11 @@ export default function ServicesPage() {
               <p className="inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a0526e] ring-1 ring-[#F9A8D4]/60">
                 Services
               </p>
-              <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#2b1019]">
+              <h1 className="font-display text-[26px] font-extrabold tracking-tight text-[#2b1019] whitespace-nowrap sm:text-4xl sm:whitespace-normal md:text-5xl">
                 Nos services <span className="text-[#EC4899]">RR Coiffure</span>
               </h1>
-              <p className="text-sm sm:text-base text-[#7b4256] leading-relaxed">
-                Coupes, colorations, balayages et soins premium. Choisissez une prestation pour découvrir tous les
-                détails.
+              <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
+                Coupes, couleurs, soins premium.
               </p>
             </div>
           </div>

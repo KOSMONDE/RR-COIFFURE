@@ -33,9 +33,8 @@ export default function ContactPage() {
                 Parlons de vos <span className="text-[#EC4899]">cheveux</span>
               </h1>
 
-              <p className="text-sm leading-relaxed text-[#7b4256] sm:text-base">
-                Dites-nous vos envies et vos disponibilités : nous revenons vers vous rapidement avec un diagnostic
-                personnalisé.
+              <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
+                Vos envies, vos dispos, diagnostic personnalisé.
               </p>
             </div>
           </div>

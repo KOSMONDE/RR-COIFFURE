@@ -48,7 +48,7 @@ export default function FinalCtaSection() {
                 size="lg"
                 className="w-full rounded-full bg-[#EC4899] px-8 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFE5F4] active:translate-y-0 sm:w-auto"
               >
-                <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                   Réserver maintenant
                 </Link>
               </Button>
@@ -62,7 +62,7 @@ export default function FinalCtaSection() {
             </div>
 
             {/* Réassurance (chips espacées) */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-[11px] text-[#7b4256]">
+            <div className="mt-6 hidden flex-nowrap items-center justify-center gap-3 overflow-x-auto text-[11px] text-[#7b4256] sm:flex">
               <span className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-[#FDE7F3]/80 px-3 py-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
                 Confirmation immédiate

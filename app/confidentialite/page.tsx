@@ -81,10 +81,10 @@ export default function ConfidentialitePage() {
                   contact@rr-coiffure.com
                 </Link>
                 <Link
-                  href="tel:+41211234567"
+                  href="tel:+41762920712"
                   className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-[#FDE7F3]/70 px-4 py-2 text-xs font-semibold text-[#7b4256] transition-colors hover:border-[#EC4899]/60 hover:text-[#EC4899]"
                 >
-                  +41 21 123 45 67
+                  +41 76 292 07 12
                 </Link>
               </div>
             </div>

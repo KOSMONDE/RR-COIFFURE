@@ -163,7 +163,7 @@ export default function AboutSection() {
                 size="lg"
                 className="w-full rounded-full bg-[#EC4899] px-8 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] sm:w-auto"
               >
-                <Link href="https://www.snailscreation.com/book-online" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                   Prendre rendez-vous
                 </Link>
               </Button>
