@@ -30,9 +30,6 @@ export default function MentionsLegalesPage() {
               <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#2b1019]">
                 Mentions <span className="text-[#EC4899]">legales</span>
               </h1>
-              <p className="text-sm sm:text-base text-[#7b4256] leading-relaxed">
-                Retrouvez ici les informations d&apos;edition, d&apos;hebergement et d&apos;utilisation du site RR COIFFURE.
-              </p>
             </div>
           </div>
         </section>

@@ -74,18 +74,18 @@ export default function HeroSection() {
 
               {/* Copy */}
               <p className="text-center text-sm leading-relaxed text-[#7b4256] sm:text-base md:text-lg lg:text-left">
-                Balayages lumineux, soins profonds et coupes sur-mesure. Un résultat durable, pensé pour votre quotidien.
+                Balayages lumineux, soins profonds et coupes sur-mesure. Un résultat durable, pour votre quotidien.
               </p>
 
               {/* Proof chips */}
-              <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+              <div className="grid grid-cols-3 gap-2 justify-items-center sm:flex sm:flex-wrap sm:justify-center lg:justify-start">
                 {PROOF_CHIPS.map(({ label, icon: Icon }) => (
                   <span
                     key={label}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/70 px-3 py-1.5 text-[11px] font-semibold text-[#2b1019] shadow-sm"
+                    className="inline-flex w-full min-w-0 items-center justify-center gap-1 rounded-full border border-[#F9A8D4]/60 bg-white/70 px-2 py-1 text-[10px] font-semibold text-[#2b1019] shadow-sm text-center sm:w-auto sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[11px]"
                   >
-                    <Icon className="h-3.5 w-3.5 text-[#EC4899]" aria-hidden="true" />
-                    {label}
+                    <Icon className="h-3 w-3 text-[#EC4899] sm:h-3.5 sm:w-3.5" aria-hidden="true" />
+                    <span className="min-w-0 leading-tight">{label}</span>
                   </span>
                 ))}
               </div>
@@ -146,11 +146,6 @@ export default function HeroSection() {
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
-                  {/* Tag flottant */}
-                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[11px] font-semibold text-white/95 backdrop-blur">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
-                    {activeShot.tag}
-                  </div>
                 </div>
               </div>
 
@@ -171,15 +166,10 @@ export default function HeroSection() {
                           ? "border-[#EC4899]/60 shadow-[0_12px_28px_rgba(236,72,153,0.18)]"
                           : "border-[#F9A8D4]/60 hover:border-[#EC4899]/55 hover:shadow-[0_12px_28px_rgba(236,72,153,0.14)]",
                       ].join(" ")}
-                      aria-label={`Afficher : ${shot.tag}`}
+                      aria-label={`Afficher : ${shot.alt}`}
                     >
                       <div className="relative aspect-[4/3]">
                         <Image src={shot.src} alt={shot.alt} fill className="object-cover" sizes="200px" />
-                      </div>
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent px-3 pb-2 pt-6">
-                        <span className="inline-flex rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur">
-                          {shot.tag}
-                        </span>
                       </div>
                     </button>
                   )

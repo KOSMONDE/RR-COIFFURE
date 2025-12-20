@@ -37,8 +37,11 @@ export default function FinalCtaSection() {
 
             {/* Texte */}
             <p className="mx-auto mb-7 max-w-2xl text-sm leading-relaxed text-[#7b4256] md:text-base">
-              Profitez d’un rendez-vous rapide et d’un diagnostic personnalisé pour une coiffure sur
-              mesure, réalisée dans notre salon premium au cœur de Genève.
+              <span className="sm:hidden">Rendez-vous rapide, diagnostic personnalisé.</span>
+              <span className="hidden sm:inline">
+                Profitez d’un rendez-vous rapide et d’un diagnostic personnalisé pour une coiffure sur
+                mesure, réalisée dans notre salon premium au cœur de Genève.
+              </span>
             </p>
 
             {/* CTA principal + secondaire (plus aéré) */}
@@ -55,7 +58,7 @@ export default function FinalCtaSection() {
 
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-[#F9A8D4]/70 bg-white/70 px-6 py-2.5 text-xs font-semibold text-[#7b4256] shadow-sm transition-colors hover:bg-white hover:text-[#2b1019] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFE5F4]"
+                className="inline-flex w-full items-center justify-center rounded-full border border-[#F9A8D4]/70 bg-white/70 px-6 py-2.5 text-xs font-semibold text-[#7b4256] shadow-sm transition-colors hover:bg-white hover:text-[#2b1019] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFE5F4] sm:w-auto"
               >
                 Parler directement avec une coiffeuse
               </Link>

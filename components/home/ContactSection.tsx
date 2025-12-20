@@ -175,7 +175,7 @@ export default function ContactSection() {
             </div>
 
             {/* Réassurance */}
-            <p className="mt-1 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-[#7b4256]">
+            <p className="mt-1 hidden flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-[#7b4256] sm:flex">
               <span className="inline-flex items-center gap-1.5">
                 <span className="text-[#EC4899]">★</span>
                 <span className="font-semibold text-[#2b1019]">4.9/5</span>
@@ -193,15 +193,6 @@ export default function ContactSection() {
           {/* FORMULAIRE */}
           <div className="flex h-full">
             <div className="relative w-full rounded-[22px] border border-[#F9A8D4]/60 bg-white/95 p-5 shadow-[0_18px_60px_rgba(236,72,153,0.16)]">
-              {/* Badge animé */}
-              <div
-                ref={badgeRef}
-                className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-[#FDE7F3] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7b4256] opacity-0 transform translate-y-[6px]"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
-                Réponse rapide & confirmation claire
-              </div>
-
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#EC4899]">
                 Formulaire de contact
               </p>
@@ -305,7 +296,7 @@ export default function ContactSection() {
                     className="h-4 w-4 rounded border-[#F9A8D4] text-[#EC4899] focus:ring-[#F472B6]"
                     required
                   />
-                  <label htmlFor="rgpd" className="text-[11px] leading-snug text-[#7b4256]">
+                  <label htmlFor="rgpd" className="text-[11px] text-[#7b4256] whitespace-nowrap sm:whitespace-normal">
                     J’accepte l’usage de mes infos pour répondre à ma demande.
                   </label>
                 </div>

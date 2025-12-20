@@ -27,7 +27,7 @@ export default function SiteFooter() {
                 />
               </div>
 
-              <div>
+              <div className="hidden sm:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-[#a0526e]">
                   RR COIFFURE
                 </p>

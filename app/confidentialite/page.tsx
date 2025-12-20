@@ -30,9 +30,6 @@ export default function ConfidentialitePage() {
               <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#2b1019]">
                 Politique de <span className="text-[#EC4899]">confidentialite</span>
               </h1>
-              <p className="text-sm sm:text-base text-[#7b4256] leading-relaxed">
-                Cette page explique comment RR COIFFURE collecte, utilise et protege vos donnees personnelles.
-              </p>
             </div>
           </div>
         </section>

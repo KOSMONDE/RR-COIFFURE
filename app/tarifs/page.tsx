@@ -98,48 +98,12 @@ export default function TarifsPage() {
               </p>
 
               <h1 className="font-display text-4xl font-extrabold tracking-tight text-[#2b1019] md:text-5xl">
-                Nos tarifs <span className="text-[#EC4899]">RR Coiffure</span>
+                Nos <span className="text-[#EC4899]">tarifs</span>
               </h1>
 
               <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
                 Prix clairs, diagnostic personnalisé.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* NAV sticky (améliorée : scroll horizontal mobile + focus ring + CTA full width mobile) */}
-        <section className="sticky top-16 z-30 border-b border-[#F9A8D4]/60 bg-[#FDF2F8]/90 backdrop-blur-md">
-          <div className="mx-auto max-w-6xl px-6 py-4 md:px-10">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-              <div className="-mx-2 flex items-center gap-2 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <a
-                  href="#tarifs"
-                  className="shrink-0 rounded-full border border-[#F9A8D4]/60 bg-[#EC4899] px-4 py-2 text-[11px] font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8]"
-                >
-                  Tous
-                </a>
-
-                {pricingSections.map((category) => (
-                  <a
-                    key={category.id}
-                    href={`#${category.id}`}
-                    className="shrink-0 rounded-full border border-[#F9A8D4]/60 bg-white px-4 py-2 text-[11px] font-semibold text-[#7b4256] transition-all hover:bg-[#FDE7F3] hover:text-[#2b1019] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8]"
-                  >
-                    {category.title}
-                  </a>
-                ))}
-              </div>
-
-              <Button
-                asChild
-                size="sm"
-                className="w-full rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
-              >
-                <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
-                  Réserver en ligne
-                </Link>
-              </Button>
             </div>
           </div>
         </section>

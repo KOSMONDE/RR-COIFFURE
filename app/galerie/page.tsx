@@ -1,31 +1,14 @@
 "use client"
 
-import { useMemo, useState } from "react"
 import Link from "next/link"
 import { MasonryGallery } from "@/components/masonry-gallery"
 import SiteFooter from "@/components/home/SiteFooter"
 import SiteHeader from "@/components/home/SiteHeader"
 import { Button } from "@/components/ui/button"
 import { galleryImages } from "@/lib/gallery-data"
-import { cn } from "@/lib/utils"
-
-const filterCategories = [
-  "Tous",
-  "Coloration",
-  "Mèches & Balayage",
-  "Enfants",
-  "Tresses & Extensions",
-  "Coiffage",
-  "Avant/Après",
-]
 
 export default function GaleriePage() {
-  const [activeFilter, setActiveFilter] = useState("Tous")
-
-  const filteredImages = useMemo(() => {
-    if (activeFilter === "Tous") return galleryImages
-    return galleryImages.filter((img) => img.tags.includes(activeFilter))
-  }, [activeFilter])
+  const filteredImages = galleryImages
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -47,52 +30,12 @@ export default function GaleriePage() {
               </p>
 
               <h1 className="font-display text-[24px] font-extrabold tracking-tight text-[#2b1019] whitespace-nowrap sm:text-4xl sm:whitespace-normal md:text-5xl">
-                Nos réalisations <span className="text-[#EC4899]">RR Coiffure</span>
+                Nos <span className="text-[#EC4899]">réalisations</span>
               </h1>
 
               <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
                 Avant/Après, couleurs et coiffages premium.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* FILTRES sticky (améliorés : scroll mobile + focus ring + CTA full width mobile) */}
-        <section className="sticky top-16 z-30 border-b border-[#F9A8D4]/60 bg-[#FDF2F8]/90 backdrop-blur-md">
-          <div className="mx-auto max-w-6xl px-6 py-4 md:px-10">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-              <div className="-mx-2 flex items-center gap-2 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {filterCategories.map((category) => {
-                  const isActive = activeFilter === category
-                  return (
-                    <Button
-                      key={category}
-                      variant={isActive ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setActiveFilter(category)}
-                      aria-pressed={isActive}
-                      className={cn(
-                        "shrink-0 rounded-full px-4 py-2 text-[11px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8]",
-                        isActive
-                          ? "bg-[#EC4899] text-white shadow-lg shadow-[#EC4899]/30 hover:bg-[#F472B6]"
-                          : "border-[#F9A8D4]/60 bg-white text-[#7b4256] hover:bg-[#FDE7F3] hover:text-[#2b1019]"
-                      )}
-                    >
-                      {category}
-                    </Button>
-                  )
-                })}
-              </div>
-
-              <Button
-                asChild
-                size="sm"
-                className="w-full rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF2F8] active:translate-y-0 sm:w-auto"
-              >
-                <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
-                  Réserver en ligne
-                </Link>
-              </Button>
             </div>
           </div>
         </section>
@@ -110,17 +53,6 @@ export default function GaleriePage() {
             ) : (
               <div className="py-16 text-center">
                 <p className="text-sm text-[#7b4256]">Aucune image trouvée pour cette catégorie.</p>
-
-                <div className="mt-5">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setActiveFilter("Tous")}
-                    className="rounded-full border-[#F9A8D4]/60 bg-white px-5 text-xs font-semibold text-[#7b4256] hover:bg-[#FDE7F3]"
-                  >
-                    Réinitialiser les filtres
-                  </Button>
-                </div>
               </div>
             )}
           </div>

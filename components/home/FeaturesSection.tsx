@@ -7,22 +7,26 @@ const features = [
   {
     icon: Scissors,
     title: "Balayages lumineux",
-    desc: "Couleur lumineuse, techniques modernes, fibre préservée.",
+    desc: "Couleur lumineuse, fibre préservée.",
+    descMobile: "Couleur lumineuse, fibre préservée.",
   },
   {
     icon: Palette,
     title: "Diagnostic offert",
-    desc: "Analyse personnalisée et plan d’entretien sur mesure.",
+    desc: "Analyse & plan sur mesure.",
+    descMobile: "Analyse & plan sur mesure.",
   },
   {
     icon: Clock,
     title: "Réponse rapide",
-    desc: "Booking en ligne, réponse en moins de 2h, garantie.",
+    desc: "Booking simple, réponse < 2 h.",
+    descMobile: "Booking simple, réponse < 2 h.",
   },
   {
     icon: Star,
     title: "4.9 / 5 Avis clients",
-    desc: "Clientes fidèles, avis positifs sur nos soins et couleurs.",
+    desc: "Avis clients 4.9/5.",
+    descMobile: "Avis clients 4.9/5.",
   },
 ]
 
@@ -83,8 +87,9 @@ export default function FeaturesSection() {
                   {feature.title}
                 </h3>
 
-                <p className="mx-auto max-w-[16rem] text-sm leading-relaxed text-[#7b4256]">
-                  {feature.desc}
+                <p className="mx-auto max-w-none text-[12px] text-[#7b4256] whitespace-nowrap sm:text-sm">
+                  <span className="sm:hidden">{feature.descMobile}</span>
+                  <span className="hidden sm:inline">{feature.desc}</span>
                 </p>
               </div>
             )

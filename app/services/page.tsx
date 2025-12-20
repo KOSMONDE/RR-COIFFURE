@@ -37,7 +37,7 @@ export default function ServicesPage() {
                 Services
               </p>
               <h1 className="font-display text-[26px] font-extrabold tracking-tight text-[#2b1019] whitespace-nowrap sm:text-4xl sm:whitespace-normal md:text-5xl">
-                Nos services <span className="text-[#EC4899]">RR Coiffure</span>
+                Nos <span className="text-[#EC4899]">prestations</span>
               </h1>
               <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
                 Coupes, couleurs, soins premium.

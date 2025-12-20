@@ -72,7 +72,7 @@ export default function AboutSection() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#a0526e]">
                 Salon premium
               </p>
-              <p className="text-sm font-semibold text-[#2b1019]">RR COIFFURE — Genève</p>
+              <p className="hidden text-sm font-semibold text-[#2b1019] sm:block">RR COIFFURE — Genève</p>
             </div>
           </div>
 
@@ -90,15 +90,11 @@ export default function AboutSection() {
               <span className="text-[#EC4899]">élégance</span>
             </h2>
 
-            <p className="mx-auto max-w-[42rem] text-sm leading-relaxed text-[#7b4256] sm:text-base md:text-lg">
+            <p className="mx-auto mb-[34px] max-w-[42rem] text-sm leading-relaxed text-[#7b4256] sm:mb-[38px] sm:text-base md:text-lg">
               Colorations sur mesure, coupes actuelles et soins profonds. Une expérience pensée pour un rendu lumineux,
               durable, et facile à porter au quotidien.
             </p>
 
-            <p className="mx-auto max-w-[42rem] text-[12px] leading-relaxed text-[#7b4256] sm:text-[13px]">
-              <span className="font-semibold text-[#2b1019]">Chaque cheveu a une histoire.</span>{" "}
-              La vôtre mérite une expertise sur mesure.
-            </p>
 
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a0526e]">
               Transparence • Conseil • Suivi
@@ -112,9 +108,12 @@ export default function AboutSection() {
               className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-[#F9A8D4]/60 md:block"
             />
 
-            <dl className="space-y-4 md:justify-self-end md:pr-10 md:max-w-[520px]">
+            <dl className="mx-auto w-fit max-w-sm space-y-4 md:mx-0 md:w-fit md:justify-self-end md:pr-6 md:max-w-[520px]">
               {ABOUT_HIGHLIGHTS.slice(0, 3).map(({ title, desc, icon: Icon, primary }) => (
-                <div key={title} className="flex items-start gap-3">
+                <div
+                  key={title}
+                  className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-3 text-left"
+                >
                   <div
                     className={[
                       "flex h-10 w-10 items-center justify-center rounded-xl shadow-sm ring-1",
@@ -133,9 +132,12 @@ export default function AboutSection() {
               ))}
             </dl>
 
-            <dl className="mt-6 space-y-4 border-t border-[#F9A8D4]/35 pt-5 md:mt-0 md:border-t-0 md:pl-10 md:pt-0 md:max-w-[520px]">
+            <dl className="mx-auto mt-6 w-fit max-w-sm space-y-4 border-t border-[#F9A8D4]/35 pt-5 md:mx-0 md:mt-0 md:w-fit md:justify-self-start md:pl-6 md:border-t-0 md:pt-0 md:max-w-[520px]">
               {ABOUT_HIGHLIGHTS.slice(3).map(({ title, desc, icon: Icon, primary }) => (
-                <div key={title} className="flex items-start gap-3">
+                <div
+                  key={title}
+                  className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-3 text-left"
+                >
                   <div
                     className={[
                       "flex h-10 w-10 items-center justify-center rounded-xl shadow-sm ring-1",
@@ -188,16 +190,16 @@ export default function AboutSection() {
             </div>
 
             {/* Réassurance */}
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[#9d5c75]">
-              <span className="inline-flex items-center gap-2">
+            <div className="flex flex-nowrap items-center justify-center gap-3 text-[11px] text-[#9d5c75] sm:flex-wrap sm:gap-x-8 sm:gap-y-3 sm:text-sm">
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
                 <span>✓</span>
                 Diagnostic offert
               </span>
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
                 <span>✓</span>
                 Sans engagement
               </span>
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
                 <span>✓</span>
                 Réponse rapide
               </span>

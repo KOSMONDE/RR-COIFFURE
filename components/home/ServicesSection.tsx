@@ -36,9 +36,8 @@ export default function ServicesSection() {
 
           <p className="text-sm leading-relaxed text-[#7b4256] sm:text-base">
             <span className="sm:hidden">Coupe, soin profond, transformation douce.</span>
-            <span className="hidden sm:inline">
-              Découvrez les prestations proposées par RR Coiffure : de la coupe au soin profond, pour une
-              transformation en douceur et sur mesure.
+            <span className="hidden sm:inline sm:whitespace-nowrap">
+              Nos prestations : coupe, soin profond, transformation sur mesure.
             </span>
           </p>
 
@@ -101,8 +100,8 @@ export default function ServicesSection() {
                     {service.title}
                   </h3>
 
-                  <p className="line-clamp-2 text-sm leading-relaxed text-[#7b4256]">
-                    {service.excerpt}
+                  <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-sm sm:whitespace-nowrap">
+                    {service.excerptMobile ?? service.excerpt}
                   </p>
 
                   {/* Footer carte (aligné, stable) */}
