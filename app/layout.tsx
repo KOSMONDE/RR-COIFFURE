@@ -11,20 +11,20 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rr-coiffure.com"),
-  title: "RR COIFFURE — Maintenance",
+  title: "RR COIFFURE — Salon premium a Geneve",
   description:
-    "Le site RR COIFFURE est en maintenance temporaire. Retrouvez bientôt notre nouvelle expérience en ligne. Contactez-nous pour toute demande ou prise de rendez-vous.",
+    "Salon RR COIFFURE a Geneve : balayages, colorations, coupes et soins premium. Reservez votre rendez-vous en ligne.",
   openGraph: {
-    title: "RR COIFFURE — Maintenance",
+    title: "RR COIFFURE — Salon premium a Geneve",
     description:
-      "Le site RR COIFFURE est actuellement en maintenance. Réouverture très bientôt.",
+      "Salon RR COIFFURE a Geneve : balayages, colorations, coupes et soins premium. Reservez votre rendez-vous en ligne.",
     url: "https://www.rr-coiffure.com",
     siteName: "RR COIFFURE",
     type: "website",
     locale: "fr_FR",
     images: [
       {
-        url: "/images/rr-logo.jpg",
+        url: "/images/galerie/rr-logo.jpg",
         width: 600,
         height: 600,
         alt: "RR COIFFURE logo",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RR COIFFURE — Maintenance",
-    description: "Réouverture prochaine du site RR COIFFURE.",
-    images: ["/images/rr-logo.jpg"],
+    title: "RR COIFFURE — Salon premium a Geneve",
+    description: "Salon RR COIFFURE a Geneve : balayages, colorations, coupes et soins premium.",
+    images: ["/images/galerie/rr-logo.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
