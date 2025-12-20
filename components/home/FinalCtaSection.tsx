@@ -5,27 +5,29 @@ export default function FinalCtaSection() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative py-20 sm:py-24"
+      className="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]"
     >
-      {/* Halos doux (cohérents avec le reste du site) */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-65">
-        <div className="absolute left-10 top-0 h-40 w-40 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
-        <div className="absolute right-10 bottom-0 h-40 w-40 rounded-full bg-[#EC4899]/35 blur-3xl" />
+      {/* Fond premium */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
+        <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
+        <div className="absolute -right-10 bottom-0 h-60 w-60 rounded-full bg-[#EC4899]/25 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-3xl px-4 text-center">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-[#F9A8D4]/40 bg-white/70 px-6 py-10 text-center shadow-[0_20px_60px_rgba(236,72,153,0.15)] backdrop-blur sm:px-10">
         {/* Badge final */}
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-medium text-[#b05a7b] border border-[#F9A8D4]/70 uppercase tracking-[0.18em]">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-semibold text-[#7b4256] border border-[#F9A8D4]/60 uppercase tracking-[0.18em]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
-          <span>Disponibilités mises à jour en temps réel</span>
+          <span>Disponibilités en temps réel</span>
         </div>
 
         {/* Titre */}
         <h2
           id="final-cta-title"
-          className="mb-3 text-3xl md:text-4xl font-extrabold tracking-tight text-[#2b1019]"
+          className="mb-3 font-display text-3xl md:text-4xl font-extrabold tracking-tight text-[#2b1019]"
         >
-          Transformez votre style dès aujourd’hui
+          Transformez votre <span className="text-[#EC4899]">style</span> dès aujourd’hui
         </h2>
 
         {/* Texte */}
@@ -40,7 +42,7 @@ export default function FinalCtaSection() {
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-8 text-sm font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            className="rounded-full bg-[#EC4899] px-8 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6]"
           >
             <Link href="/#reservation">
               Réserver maintenant
@@ -49,7 +51,7 @@ export default function FinalCtaSection() {
 
           <Link
             href="#contact"
-            className="text-xs font-medium text-[#EC4899] underline underline-offset-4 hover:text-[#BE185D] transition-colors"
+            className="text-xs font-semibold text-[#7b4256] underline underline-offset-4 hover:text-[#2b1019] transition-colors"
           >
             Parler directement avec une coiffeuse
           </Link>
@@ -57,15 +59,16 @@ export default function FinalCtaSection() {
 
         {/* Réassurance */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-[11px] text-[#7b4256]">
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#FDE7F3] px-3 py-1 border border-[#F9A8D4]/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#FDE7F3]/80 px-3 py-1 border border-[#F9A8D4]/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
             Confirmation immédiate
           </span>
 
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#FDF2F8] px-3 py-1 border border-[#F9A8D4]/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#FDE7F3]/80 px-3 py-1 border border-[#F9A8D4]/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
             Aucun paiement requis
           </span>
+        </div>
         </div>
       </div>
     </section>

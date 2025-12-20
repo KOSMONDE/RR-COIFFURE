@@ -13,7 +13,7 @@ const ALLOW = [
   /^\/api\/maintenance\/status(\/|$)/,
 ];
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const on = process.env.MAINTENANCE_MODE === "true";
   if (!on) return NextResponse.next();
 

@@ -44,8 +44,12 @@ export function MasonryGallery({ images }: MasonryGalleryProps) {
       {/* Masonry Grid */}
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         {images.map((image, index) => (
-          <div key={index} className="break-inside-avoid cursor-pointer group" onClick={() => openLightbox(index)}>
-            <div className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
+          <div
+            key={index}
+            className="break-inside-avoid cursor-pointer group transition-transform duration-200 hover:-translate-y-1"
+            onClick={() => openLightbox(index)}
+          >
+            <div className="relative overflow-hidden rounded-3xl border border-[#F9A8D4]/40 bg-white/80 shadow-[0_18px_40px_rgba(236,72,153,0.12)] transition-shadow duration-200 group-hover:shadow-[0_24px_50px_rgba(236,72,153,0.18)]">
               <div className="relative aspect-auto">
                 <Image
                   src={image.src || "/placeholder.svg"}

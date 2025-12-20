@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   return NextResponse.json({
     env: process.env.MAINTENANCE_MODE ?? null,
-    hasAdminCookie: !!cookies().get("admin_token")?.value,
+    hasAdminCookie: !!(await cookies()).get("admin_token")?.value,
     nodeEnv: process.env.NODE_ENV,
   });
 }

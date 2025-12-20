@@ -9,20 +9,23 @@ interface PriceRowProps {
 
 export function PriceRow({ name, from, note, isNew }: PriceRowProps) {
   return (
-    <div className="flex items-center justify-between gap-4 py-4 border-b border-border/50 last:border-0">
+    <div className="flex items-start justify-between gap-4 py-4 border-b border-[#F9A8D4]/40 last:border-0">
       <div className="flex-1">
         <div className="flex items-center gap-2">
-          <h3 className="font-medium text-foreground">{name}</h3>
+          <h3 className="text-sm font-semibold text-[#2b1019]">{name}</h3>
           {isNew && (
-            <Badge variant="default" className="text-xs rounded-full">
+            <Badge
+              variant="outline"
+              className="rounded-full border-[#F9A8D4]/60 bg-[#FDE7F3] text-[10px] font-semibold text-[#EC4899]"
+            >
               Nouveau
             </Badge>
           )}
         </div>
-        {note && <p className="text-sm text-muted-foreground mt-1">{note}</p>}
+        {note && <p className="mt-1 text-xs text-[#a0526e]">{note}</p>}
       </div>
       <div className="text-right">
-        <p className="font-semibold text-primary whitespace-nowrap">{from}</p>
+        <p className="text-sm font-semibold text-[#EC4899] whitespace-nowrap">{from}</p>
       </div>
     </div>
   )

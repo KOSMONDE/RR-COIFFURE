@@ -1,28 +1,16 @@
 import type { Metadata } from "next"
-import { Topbar } from "@/components/topbar"
-import { Navbar } from "@/components/navbar"
-import { PriceRow } from "@/components/price-row"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Info } from "lucide-react"
 import Link from "next/link"
+import { Info } from "lucide-react"
+import SiteHeader from "@/components/home/SiteHeader"
+import SiteFooter from "@/components/home/SiteFooter"
+import { PriceRow } from "@/components/price-row"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Tarifs — RR COIFFURE",
   description:
     "Découvrez nos tarifs transparents pour coupes, colorations, balayages, soins et tresses. Prix d'appel selon diagnostic personnalisé.",
 }
-
-const navItems = [
-  { label: "Accueil", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Tarifs", href: "/tarifs" },
-  { label: "Galerie", href: "/galerie" },
-  { label: "Rendez-vous", href: "/rdv" },
-  { label: "Avis", href: "/avis" },
-  { label: "Contact", href: "/contact" },
-]
 
 const pricingCategories = [
   {
@@ -72,118 +60,150 @@ const pricingCategories = [
   },
 ]
 
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "")
+
+const pricingSections = pricingCategories.map((category) => ({
+  ...category,
+  id: slugify(category.title),
+}))
+
 export default function TarifsPage() {
   return (
-    <div className="min-h-screen">
-      <Topbar
-        address="Rue de la Gare 12, 1003 Lausanne"
-        phone="+41 21 123 45 67"
-        hours="Lun-Sam 9h-19h"
-        ctaUrl="https://www.snailscreation.com/book-online"
-      />
-      <Navbar items={navItems} />
+    <div className="min-h-screen flex flex-col bg-white">
+      <SiteHeader />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-100 via-brand-50 to-brand-300 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-balance mb-4 text-brand-600">Tarifs</h1>
-            <p className="text-lg text-ink/70 text-pretty">
-              Transparence et clarté. Prix d'appel selon diagnostic personnalisé.
-            </p>
+      <main className="flex-1">
+        <section
+          id="tarifs"
+          className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]"
+        >
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
+            <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
+            <div className="absolute -right-10 bottom-0 h-60 w-60 rounded-full bg-[#EC4899]/25 blur-3xl" />
           </div>
-        </div>
-      </section>
 
-      {/* Info Banner */}
-      <section className="py-8 bg-gradient-to-b from-white to-brand-50/30">
-        <div className="container mx-auto px-4">
-          <Alert className="max-w-4xl mx-auto border-brand-300 bg-brand-50">
-            <Info className="h-4 w-4 text-brand-600" />
-            <AlertDescription className="text-sm text-ink">
-              <strong>Tarifs indicatifs.</strong> Un devis précis vous sera communiqué après diagnostic personnalisé de
-              vos cheveux.
-            </AlertDescription>
-          </Alert>
-        </div>
-      </section>
+          <div className="relative mx-auto max-w-6xl px-6 md:px-10">
+            <div className="mx-auto max-w-3xl text-center space-y-4">
+              <p className="inline-flex items-center gap-2 rounded-full bg-[#FDE7F3] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a0526e] ring-1 ring-[#F9A8D4]/60">
+                Tarifs
+              </p>
+              <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#2b1019]">
+                Nos tarifs <span className="text-[#EC4899]">RR Coiffure</span>
+              </h1>
+              <p className="text-sm sm:text-base text-[#7b4256] leading-relaxed">
+                Transparence et clarté. Prix indicatifs selon diagnostic personnalisé et besoins réels.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      {/* Pricing Grid */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            {pricingCategories.map((category, i) => (
-              <Card
-                key={i}
-                className="rounded-2xl shadow-sm hover:shadow-md transition-shadow border-brand-100 hover:border-brand-300"
+        <section className="sticky top-16 z-30 border-b border-[#F9A8D4]/60 bg-[#FDF2F8]/90 backdrop-blur-md">
+          <div className="mx-auto max-w-6xl px-6 md:px-10 py-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="#tarifs"
+                  className="rounded-full border border-[#F9A8D4]/60 bg-[#EC4899] px-4 py-2 text-[11px] font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:bg-[#F472B6]"
+                >
+                  Tous
+                </a>
+                {pricingSections.map((category) => (
+                  <a
+                    key={category.id}
+                    href={`#${category.id}`}
+                    className="rounded-full border border-[#F9A8D4]/60 bg-white px-4 py-2 text-[11px] font-semibold text-[#7b4256] transition-all hover:bg-[#FDE7F3] hover:text-[#2b1019]"
+                  >
+                    {category.title}
+                  </a>
+                ))}
+              </div>
+
+              <Button
+                asChild
+                size="sm"
+                className="rounded-full bg-[#EC4899] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6]"
               >
-                <CardHeader>
-                  <CardTitle className="text-2xl text-brand-600">{category.title}</CardTitle>
-                  <CardDescription>{category.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-0">
-                    {category.items.map((item, j) => (
-                      <PriceRow key={j} {...item} />
+                <Link href="https://www.snailscreation.com/book-online">Réserver en ligne</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative py-16 sm:py-20 bg-[#FDF2F8]">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute inset-0 opacity-20 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
+          </div>
+
+          <div className="mx-auto max-w-6xl px-6 md:px-10 space-y-8">
+            <div className="rounded-3xl border border-[#F9A8D4]/60 bg-white/80 px-5 py-4 text-[#7b4256] shadow-[0_14px_32px_rgba(236,72,153,0.12)]">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#FDE7F3] text-[#EC4899]">
+                  <Info className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <div className="space-y-1 text-sm">
+                  <p className="font-semibold text-[#2b1019]">Tarifs indicatifs</p>
+                  <p className="text-[#7b4256]">
+                    Un devis précis vous est communiqué après diagnostic personnalisé de vos cheveux.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {pricingSections.map((category) => (
+                <div
+                  key={category.id}
+                  id={category.id}
+                  className="scroll-mt-28 rounded-3xl border border-[#F9A8D4]/40 bg-white/80 p-6 shadow-[0_18px_40px_rgba(236,72,153,0.12)]"
+                >
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-semibold text-[#2b1019]">{category.title}</h2>
+                    <p className="text-sm text-[#a0526e]">{category.description}</p>
+                  </div>
+                  <div className="mt-4">
+                    {category.items.map((item, index) => (
+                      <PriceRow key={index} {...item} />
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-brand-100 via-brand-300 to-brand-600">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Prêt à réserver ?</h2>
-          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Prenez rendez-vous dès maintenant et bénéficiez d'un diagnostic gratuit
-          </p>
-          <Button asChild size="lg" className="rounded-2xl shadow-lg bg-white text-brand-600 hover:bg-brand-50">
-            <Link href="https://www.snailscreation.com/book-online">Prendre rendez-vous</Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t border-border md:hidden z-40">
-        <Button asChild size="lg" className="w-full rounded-2xl shadow-lg bg-brand-600 text-white hover:bg-brand-50">
-          <Link href="https://www.snailscreation.com/book-online">Prendre RDV</Link>
-        </Button>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-12 bg-gradient-to-b from-brand-50/30 to-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-brand-600">RR.COIFFURE</h3>
-              <p className="text-sm text-muted-foreground">Votre salon de coiffure professionnel à Lausanne</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-brand-600">Contact</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Rue de la Gare 12</p>
-                <p>1003 Lausanne</p>
-                <p>+41 21 123 45 67</p>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-brand-600">Horaires</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Lundi - Samedi</p>
-                <p>9h00 - 19h00</p>
-                <p>Dimanche: Fermé</p>
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} RR.COIFFURE. Tous droits réservés.</p>
+        </section>
+
+        <section className="relative overflow-hidden py-16 sm:py-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]" />
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
+            <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
+            <div className="absolute -right-10 bottom-0 h-60 w-60 rounded-full bg-[#EC4899]/25 blur-3xl" />
           </div>
-        </div>
-      </footer>
+
+          <div className="relative mx-auto max-w-4xl px-6 md:px-10 text-center text-[#2b1019]">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold">Prête à réserver ?</h2>
+            <p className="mt-3 text-sm sm:text-base text-[#7b4256] leading-relaxed">
+              Prenez rendez-vous dès maintenant et bénéficiez d&apos;un diagnostic gratuit.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="mt-6 rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6]"
+            >
+              <Link href="https://www.snailscreation.com/book-online">Prendre rendez-vous</Link>
+            </Button>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
     </div>
   )
 }

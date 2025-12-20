@@ -1,9 +1,11 @@
 import { cookies } from "next/headers";
 import AdminLogoutButton from "./AdminLogoutButton";
 
-export default function AdminControls() {
-  const c = cookies();
-  const token = c.get("admin_token")?.value;
+export default async function AdminControls() {
+  const c = await cookies();
+  // Protection : certaines phases de build peuvent renvoyer un store sans méthode get
+  const getCookie = typeof (c as any).get === "function" ? (c as any).get.bind(c) : null;
+  const token = getCookie?.("admin_token")?.value ?? getCookie?.("maintenance_auth")?.value;
   if (!token) return null;
 
   // Validation stricte optionnelle

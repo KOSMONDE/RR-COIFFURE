@@ -21,12 +21,20 @@ export function Navbar({ items }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 border-b border-[#F9A8D4]/40 bg-[#FDF2F8]/90 backdrop-blur">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/rr-coiffure-logo.jpg" alt="RR coiffure" width={60} height={60} className="rounded-lg" />
-            RR<span className="text-brand-600">.COIFFURE</span>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/rr-coiffure-logo.jpg"
+              alt="RR coiffure"
+              width={60}
+              height={60}
+              className="rounded-xl border border-[#F9A8D4]/60 bg-white"
+            />
+            <span className="font-display text-sm font-semibold tracking-tight text-[#2b1019] sm:text-base">
+              RR<span className="text-[#EC4899]">.COIFFURE</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,8 +44,8 @@ export function Navbar({ items }: NavbarProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-brand-600",
-                    pathname === item.href ? "text-brand-600" : "text-muted-foreground",
+                    "text-sm font-medium transition-colors hover:text-[#b05a7b]",
+                    pathname === item.href ? "text-[#EC4899]" : "text-[#7b4256]",
                   )}
                 >
                   {item.label}
@@ -47,7 +55,11 @@ export function Navbar({ items }: NavbarProps) {
           </ul>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+          <button
+            className="md:hidden rounded-full border border-[#F9A8D4]/60 bg-white p-2 text-[#2b1019] shadow-sm transition hover:bg-[#FDE7F3] hover:text-[#b05a7b]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
@@ -61,8 +73,8 @@ export function Navbar({ items }: NavbarProps) {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "block py-2 text-sm font-medium transition-colors hover:text-brand-600",
-                    pathname === item.href ? "text-brand-600" : "text-muted-foreground",
+                    "block py-2 text-sm font-medium transition-colors hover:text-[#b05a7b]",
+                    pathname === item.href ? "text-[#EC4899]" : "text-[#7b4256]",
                   )}
                 >
                   {item.label}

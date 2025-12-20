@@ -1,29 +1,30 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Instagram, Mail, Phone } from "lucide-react"
 
 export default function SiteFooter() {
   return (
-    <footer className="relative border-t border-[#F9A8D4]/70 bg-gradient-to-b from-white via-[#FFEAF5]/60 to-white py-14 sm:py-16">
-      {/* Halos décoratifs */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.65]">
-        <div className="absolute -top-14 right-16 h-40 w-40 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
-        <div className="absolute bottom-0 left-10 h-40 w-40 rounded-full bg-[#EC4899]/30 blur-3xl" />
+    <footer className="relative overflow-hidden border-t border-[#F9A8D4]/60 bg-[#FDF2F8] py-6 sm:py-8 pb-2 sm:pb-3">
+      {/* Fond premium */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(249,189,217,0.25),transparent_55%),radial-gradient(circle_at_85%_80%,rgba(236,126,184,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 opacity-25 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
         {/* Grille principale */}
-        <div className="grid gap-12 md:grid-cols-3">
-          
+        <div className="grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[#F9A8D4]/60">
+
           {/* Identité */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#F9A8D4] via-[#FECACA] to-[#F472B6] shadow-sm">
+          <div className="space-y-5 text-center md:px-8 md:text-left">
+            <div className="flex items-center justify-center gap-4 md:justify-start">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white ring-1 ring-[#F9A8D4]/50 shadow-[0_10px_24px_rgba(236,72,153,0.18)]">
                 <Image
                   src="/images/galerie/rr-logo.jpg"
                   alt="RR Coiffure"
-                  width={60}
-                  height={60}
-                  className="rounded-full border border-white/70 object-cover"
+                  width={44}
+                  height={44}
+                  className="rounded-full border border-[#F9A8D4]/60 object-cover"
                 />
               </div>
               <div>
@@ -36,65 +37,74 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            <p className="max-w-xs text-[13px] leading-relaxed text-[#7b4256]">
-              Expertise, créativité et soins capillaires sur mesure.  
-              Une expérience pensée pour sublimer vos cheveux.
+            <p className="mx-auto max-w-xs text-[12px] leading-relaxed text-[#7b4256] md:mx-0">
+              Expertise, créativité et soins capillaires sur mesure. Une expérience pensée pour sublimer vos cheveux.
             </p>
+
           </div>
 
           {/* Contact */}
-          <div className="space-y-5">
+          <div className="space-y-5 text-center md:px-8 md:text-left">
             <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#a0526e]">
               Contact
             </h4>
 
             {/* Adresse retirée → Ne laisser que les moyens de contact */}
-            <div className="space-y-2 text-[13px]">
-              <p>
-                <Link
-                  href="tel:+41211234567"
-                  className="font-semibold text-[#2b1019] underline underline-offset-[3px] decoration-[#d1b0c4] transition-colors hover:text-[#EC4899] hover:decoration-[#EC4899]"
-                >
-                  +41 21 123 45 67
-                </Link>
-              </p>
-              <p>
-                <Link
-                  href="mailto:contact@rr-coiffure.com"
-                  className="text-[#7b4256] underline underline-offset-[3px] decoration-[#e7cad8] transition-colors hover:text-[#EC4899] hover:decoration-[#EC4899]"
-                >
-                  contact@rr-coiffure.com
-                </Link>
-              </p>
+            <div className="flex flex-col gap-2 text-[12px]">
+              <Link
+                href="tel:+41211234567"
+                className="group inline-flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/80 px-4 py-2 font-semibold text-[#2b1019] shadow-sm transition-colors hover:border-[#EC4899]/60 hover:text-[#EC4899] hover:bg-[#FDE7F3] md:justify-center"
+                aria-label="Appeler le salon"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-[#EC4899]" aria-hidden="true" />
+                  Appeler
+                </span>
+                <span className="sr-only">+41 21 123 45 67</span>
+              </Link>
+              <Link
+                href="mailto:contact@rr-coiffure.com"
+                className="group inline-flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/80 px-4 py-2 font-semibold text-[#7b4256] shadow-sm transition-colors hover:border-[#EC4899]/60 hover:text-[#EC4899] hover:bg-[#FDE7F3] md:justify-center"
+                aria-label="Envoyer un e-mail au salon"
+              >
+                <span className="inline-flex items-center gap-2 text-[#2b1019]">
+                  <Mail className="h-4 w-4 text-[#EC4899]" aria-hidden="true" />
+                  Écrire
+                </span>
+                <span className="sr-only">contact@rr-coiffure.com</span>
+              </Link>
             </div>
+
+
           </div>
 
           {/* Instagram */}
-          <div className="space-y-5">
-            <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#a0526e]">
-              Suivez-nous
-            </h4>
+          <div className="space-y-6 md:px-8 md:text-left text-center">
+            <div className="space-y-3">
+              <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#a0526e]">
+                Suivez-nous
+              </h4>
 
-            <Link
-              href="https://www.instagram.com/rr.coiffure/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              Instagram
-              <span aria-hidden="true" className="text-[12px]">
-                ↗
-              </span>
-            </Link>
+              <p className="max-w-xs text-[12px] leading-relaxed text-[#7b4256] md:mx-0 mx-auto">
+                Découvrez nos réalisations et nouveautés du salon.
+              </p>
 
-            <p className="max-w-xs text-[13px] leading-relaxed text-[#7b4256]">
-              Découvrez nos réalisations, avant / après et nouveautés du salon.
-            </p>
+              <Link
+                href="https://www.instagram.com/rr.coiffure/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ouvrir Instagram dans un nouvel onglet"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-[#F9A8D4]/60 bg-white/80 px-8 sm:px-10 py-2.5 text-sm font-semibold text-[#7b4256] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#EC4899]/60 hover:text-[#EC4899] hover:bg-[#FDE7F3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 active:translate-y-0 md:justify-start"
+              >
+                <Instagram className="h-4 w-4 text-[#EC4899]" aria-hidden="true" />
+                Instagram
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Bas du footer */}
-        <div className="mt-12 border-t border-[#F9A8D4]/70 pt-5">
+        <div className="mt-3 border-t border-[#F9A8D4]/60 pt-2">
           <div className="flex flex-col items-center gap-3 text-center text-[11px] text-[#7b4256] md:flex-row md:justify-between md:text-left">
             <p>
               © 2025{" "}

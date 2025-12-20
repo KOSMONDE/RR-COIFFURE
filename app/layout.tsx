@@ -1,14 +1,16 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import AdminControls from "@/components/AdminControls";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.rr-coiffure.com"),
   title: "RR COIFFURE — Maintenance",
   description:
     "Le site RR COIFFURE est en maintenance temporaire. Retrouvez bientôt notre nouvelle expérience en ligne. Contactez-nous pour toute demande ou prise de rendez-vous.",
@@ -46,7 +48,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={inter.className}>
+    <html lang="fr" className={`${playfair.variable} ${manrope.variable}`}>
       <body className="relative font-sans antialiased overflow-x-hidden">
         {children}
         <AdminControls />
