@@ -1,15 +1,14 @@
 "use client"
 
-import { useMemo, useState, type MouseEvent } from "react"
+import { type MouseEvent } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Sparkles, Star, Phone, ArrowRight, ArrowDown } from "lucide-react"
 
-const HERO_SHOTS = [
-  { id: "main", src: "/images/galerie/4.jpeg", alt: "Balayage blond lumineux – RR COIFFURE Genève", tag: "Balayage & soin" },
-  { id: "balayage", src: "/images/galerie/1.jpeg", alt: "Balayage caramel sur mesure – RR COIFFURE Genève", tag: "Sur-mesure" },
-]
+const HERO_VIDEO = {
+  src: "/images/galerie/18.mp4",
+  alt: "Balayage blond lumineux – RR COIFFURE Genève",
+}
 
 const PROOF_CHIPS = [
   { label: "4.9/5 Google", icon: Star },
@@ -18,13 +17,6 @@ const PROOF_CHIPS = [
 ]
 
 export default function HeroSection() {
-  const [activeShotId, setActiveShotId] = useState(HERO_SHOTS[0].id)
-
-  const activeShot = useMemo(
-    () => HERO_SHOTS.find((s) => s.id === activeShotId) ?? HERO_SHOTS[0],
-    [activeShotId]
-  )
-
   const scrollToHash = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return
     e.preventDefault()
@@ -135,45 +127,20 @@ export default function HeroSection() {
               {/* Image principale */}
               <div className="relative overflow-hidden rounded-[1.6rem] border border-[#F9A8D4]/50 bg-white/40 shadow-[0_22px_70px_rgba(236,72,153,0.20)] backdrop-blur">
                 <div className="relative aspect-[4/3] sm:aspect-[5/4]">
-                  <Image
-                    key={activeShot.src}
-                    src={activeShot.src}
-                    alt={activeShot.alt}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
+                  <video
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={HERO_VIDEO.alt}
+                  >
+                    <source src={HERO_VIDEO.src} type="video/mp4" />
+                  </video>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
                 </div>
-              </div>
-
-              {/* Vignettes */}
-              <div className="grid grid-cols-2 gap-3">
-                {HERO_SHOTS.map((shot) => {
-                  const isActive = shot.id === activeShotId
-                  return (
-                    <button
-                      key={shot.id}
-                      type="button"
-                      onClick={() => setActiveShotId(shot.id)}
-                      aria-pressed={isActive}
-                      className={[
-                        "relative overflow-hidden rounded-2xl border bg-white/70 shadow-sm transition",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3]",
-                        isActive
-                          ? "border-[#EC4899]/60 shadow-[0_12px_28px_rgba(236,72,153,0.18)]"
-                          : "border-[#F9A8D4]/60 hover:border-[#EC4899]/55 hover:shadow-[0_12px_28px_rgba(236,72,153,0.14)]",
-                      ].join(" ")}
-                      aria-label={`Afficher : ${shot.alt}`}
-                    >
-                      <div className="relative aspect-[4/3]">
-                        <Image src={shot.src} alt={shot.alt} fill className="object-cover" sizes="200px" />
-                      </div>
-                    </button>
-                  )
-                })}
               </div>
             </div>
           </div>

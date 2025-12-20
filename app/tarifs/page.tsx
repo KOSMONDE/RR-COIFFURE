@@ -98,7 +98,7 @@ export default function TarifsPage() {
               </p>
 
               <h1 className="font-display text-4xl font-extrabold tracking-tight text-[#2b1019] md:text-5xl">
-                Nos <span className="text-[#EC4899]">tarifs</span>
+                Nos <span className="text-[#EC4899]">prix</span>
               </h1>
 
               <p className="text-[12px] text-[#7b4256] whitespace-nowrap sm:text-base sm:whitespace-normal">
