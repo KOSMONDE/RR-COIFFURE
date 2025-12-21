@@ -178,10 +178,6 @@
     @apply bg-background text-foreground;
   }
 
-  body.has-fixed-promo {
-    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
-  }
-
   /* Gradients */
   .gradient-pink-soft {
     background: linear-gradient(135deg, #ffd6e6 0%, #ff9fc2 50%, #e05b95 100%);
@@ -189,12 +185,6 @@
 
   .gradient-pink-light {
     background: linear-gradient(135deg, #ffe7f1 0%, #ffd6e6 100%);
-  }
-}
-
-@media (min-width: 640px) {
-  body.has-fixed-promo {
-    padding-bottom: 0;
   }
 }
 

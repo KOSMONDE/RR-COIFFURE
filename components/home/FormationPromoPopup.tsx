@@ -20,13 +20,6 @@ export default function FormationPromoPopup() {
     return () => window.clearTimeout(timer)
   }, [])
 
-  useEffect(() => {
-    document.body.classList.toggle("has-fixed-promo", open)
-    return () => {
-      document.body.classList.remove("has-fixed-promo")
-    }
-  }, [open])
-
   const handleClose = () => {
     window.localStorage.setItem(STORAGE_KEY, "1")
     setOpen(false)
