@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Sparkles, Star, Phone, ArrowRight, ArrowDown, Clock } from "lucide-react"
 
 const HERO_VIDEO = {
-  src: "/images/galerie/18.mp4",
-  poster: "/images/galerie/18.jpg",
+  src: "/images/galerie/1221.mov",
+  poster: "/images/galerie/17.jpeg",
   alt: "Balayage blond lumineux – RR COIFFURE Genève",
 }
 
@@ -84,7 +84,7 @@ export default function HeroSection() {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative overflow-hidden bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
+      className="relative overflow-hidden bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
     >
       {/* Fond premium */}
       <div className="pointer-events-none absolute inset-0">
@@ -179,7 +179,7 @@ export default function HeroSection() {
                 <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-white/30" />
 
                 {/* ✅ Conteneur vidéo : blur-mirror (bandes intelligentes) */}
-                <div className="relative aspect-[4/3] sm:aspect-[5/4] overflow-hidden">
+                <div className="relative aspect-4/3 sm:aspect-5/4 overflow-hidden">
                   {/* Background flouté = même vidéo, object-cover, zoom + blur */}
                   <video
                     ref={videoBgRef}
@@ -196,8 +196,8 @@ export default function HeroSection() {
                   </video>
 
                   {/* Overlay de finition : garde la patte rose + contraste */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 via-transparent to-[#EC4899]/20" />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-[#EC4899]/20 via-transparent to-[#EC4899]/20" />
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/15 via-transparent to-transparent" />
 
                   {/* Vidéo principale : verticale centrée (object-contain) */}
                   <div className="relative z-10 flex h-full w-full items-center justify-center px-6 sm:px-8">
