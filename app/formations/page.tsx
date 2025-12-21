@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -21,51 +21,15 @@ const training = {
 }
 
 const modules = [
-  {
-    title: "Anatomie et physiologie capillaire",
-    hours: "3 h",
-    desc: "Comprendre la structure du cheveu et du cuir chevelu pour éviter les erreurs techniques et choisir les bons soins dès le diagnostic.",
-  },
-  {
-    title: "Coiffure et mise en forme",
-    hours: "5 h",
-    desc: "Maîtriser brushing, volume, finitions et outils chauffants pour des résultats salon reproductibles et qui tiennent dans le temps.",
-  },
-  {
-    title: "Hygiénisation, soins et sécurité",
-    hours: "3 h",
-    desc: "Installer des protocoles d’hygiène clairs, rassurer la cliente et travailler proprement, comme dans un salon professionnel.",
-  },
-  {
-    title: "Colorimétrie et techniques de mèches",
-    hours: "6 h",
-    desc: "Savoir lire une couleur, poser un diagnostic fiable et réaliser mèches, balayages, contouring et patines sans improviser.",
-  },
-  {
-    title: "Chimie et traitements (4 techniques)",
-    hours: "8 h",
-    desc: "Comprendre ce qui se passe dans la fibre lors d’une coloration, décoloration, d’un défrisage ou lissage pour limiter les ratés et les cheveux cassés.",
-  },
-  {
-    title: "Allongement et définition des boucles",
-    hours: "6 h",
-    desc: "Travailler les cheveux texturés pour définir la boucle, réduire les frisottis et proposer de vraies prestations adaptées.",
-  },
-  {
-    title: "Accueil et service client",
-    hours: "3 h",
-    desc: "Structurer un rendez-vous de A à Z : accueil, écoute, diagnostic, prestation, conseils et fidélisation.",
-  },
-  {
-    title: "Marketing et notions de gestion",
-    hours: "4 h",
-    desc: "Poser vos prix, présenter vos prestations, utiliser les réseaux sociaux et gérer votre activité sans vous disperser.",
-  },
-  {
-    title: "(Bonus) Module Tresseuse",
-    hours: "2 h",
-    desc: "Découvrir les bases des tresses modernes (séparations, box braids, finitions) pour enrichir votre carte de services.",
-  },
+  { title: "Anatomie et physiologie capillaire", hours: "3 h", desc: "Structure du cheveu et du cuir chevelu." },
+  { title: "Coupe et coiffage (modelage)", hours: "5 h", desc: "Techniques de coupe, mise en forme et coiffage." },
+  { title: "Hygiène, soins et sécurité", hours: "3 h", desc: "Protocoles d’hygiène, soins essentiels et sécurité." },
+  { title: "Colorimétrie et techniques de design de mèches", hours: "6 h", desc: "Bases de la couleur, diagnostic et placement des mèches." },
+  { title: "Chimie et traitements (techniques chimiques)", hours: "8 h", desc: "Comprendre les réactions chimiques et les traitements capillaires." },
+  { title: "Lissage et définition des boucles", hours: "6 h", desc: "Techniques de lissage et travail des boucles." },
+  { title: "Accueil et service client", hours: "3 h", desc: "Accueil, écoute, diagnostic et relation client." },
+  { title: "Marketing et notions de business", hours: "4 h", desc: "Positionnement, communication et bases business." },
+  { title: "Bonus : Tricologie", hours: "2 h", desc: "Science du cuir chevelu et des cheveux." },
 ]
 
 const modes = [
@@ -93,8 +57,7 @@ const modes = [
       "Possibilité de revoir les modules autant de fois que nécessaire pendant la durée d’accès.",
       "Idéal si vous êtes en reconversion, à l’étranger ou à distance de Lausanne.",
     ],
-    priceNote:
-      "Tarif adapté pour la version vidéo (à définir directement avec le salon).",
+    priceNote: "Tarif adapté pour la version vidéo (à définir directement avec le salon).",
     licenceNote:
       "Licence professionnelle RR COIFFURE délivrée après validation des évaluations prévues en fin de parcours.",
   },
@@ -133,26 +96,15 @@ const sideNavItems = [
 
 function CheckIcon() {
   return (
-    <svg
-      aria-hidden="true"
-      className="mt-[3px] h-3.5 w-3.5 flex-shrink-0 text-[#EC4899]"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M6.2 11.3 3.2 8.3l1.1-1.1 1.9 1.9 4.5-4.5 1.1 1.1-5.6 5.6z"
-        fill="currentColor"
-      />
+    <svg aria-hidden="true" className="mt-[3px] h-3.5 w-3.5 flex-shrink-0 text-[#EC4899]" viewBox="0 0 16 16">
+      <path d="M6.2 11.3 3.2 8.3l1.1-1.1 1.9 1.9 4.5-4.5 1.1 1.1-5.6 5.6z" fill="currentColor" />
     </svg>
   )
 }
 
 function InstagramIcon() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-4 w-4 flex-shrink-0"
-    >
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 flex-shrink-0">
       <path
         fill="currentColor"
         d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.71 4.71 0 0 0 12 7.3Zm0 7.7A3 3 0 1 1 15 12a3 3 0 0 1-3 3Zm4.9-7.9a1.1 1.1 0 1 0-1.1-1.1 1.09 1.09 0 0 0 1.1 1.1ZM19 4.3A4.27 4.27 0 0 0 16.7 3 15.42 15.42 0 0 0 12 2.8a15.42 15.42 0 0 0-4.7.2A4.27 4.27 0 0 0 5 4.3a4.27 4.27 0 0 0-1.3 2.3A15.42 15.42 0 0 0 3.5 11v2a15.42 15.42 0 0 0 .2 4.7A4.27 4.27 0 0 0 5 20.3a4.27 4.27 0 0 0 2.3 1.3 15.42 15.42 0 0 0 4.7.2 15.42 15.42 0 0 0 4.7-.2A4.27 4.27 0 0 0 19 20.3a4.27 4.27 0 0 0 1.3-2.3 15.42 15.42 0 0 0 .2-4.7v-2a15.42 15.42 0 0 0-.2-4.7A4.27 4.27 0 0 0 19 4.3Zm-.1 9.8a13.86 13.86 0 0 1-.2 4.2 2.6 2.6 0 0 1-1.5 1.5 13.86 13.86 0 0 1-4.2.2 13.86 13.86 0 0 1-4.2-.2 2.6 2.6 0 0 1-1.5-1.5 13.86 13.86 0 0 1-.2-4.2v-2a13.86 13.86 0 0 1 .2-4.2 2.6 2.6 0 0 1 1.5-1.5 13.86 13.86 0 0 1 4.2-.2 13.86 13.86 0 0 1 4.2.2 2.6 2.6 0 0 1 1.5 1.5 13.86 13.86 0 0 1 .2 4.2Z"
@@ -161,24 +113,113 @@ function InstagramIcon() {
   )
 }
 
+function ReserveCard() {
+  return (
+    <div className="rounded-3xl bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.10)] ring-1 ring-[#F9E0EC]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#EC4899]">Réserver votre place</p>
+
+      <div className="mt-3 rounded-2xl bg-[#FFF7FB] p-3 ring-1 ring-[#F9C3DF]">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-sm font-semibold text-[#2b1019]">{training.price}</p>
+          <p className="text-[11px] text-[#a0526e]">{training.duration}</p>
+        </div>
+        <p className="mt-1 text-[12px] leading-relaxed text-[#7b4256]">
+          Message Instagram = réponse rapide. Places limitées pour un encadrement réel.
+        </p>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        <Link
+          href="https://www.instagram.com/rr.coiffure/"
+          target="_blank"
+          rel="noreferrer"
+          className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#EC4899] via-[#F472B6] to-[#EC4899] px-4 py-2.5 text-[13px] font-semibold text-white shadow-[0_14px_36px_rgba(190,24,93,0.45)] hover:opacity-95"
+        >
+          Demander une place
+        </Link>
+        <a
+          href="#programme"
+          className="flex w-full items-center justify-center rounded-full bg-[#FDF2F8] px-4 py-2.5 text-[12px] font-semibold text-[#EC4899] ring-1 ring-[#F9A8D4]/70 hover:bg-[#FDE7F3]"
+        >
+          Voir le programme
+        </a>
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-[#7b4256]">
+        {["Acompte possible", "Paiement en plusieurs fois", "Présentiel ou vidéo"].map((t) => (
+          <span key={t} className="rounded-full bg-[#FDF2F8] px-3 py-1 ring-1 ring-[#F9A8D4]/60">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function SideNav({ activeId }: { activeId: string | null }) {
+  const safeActiveId = activeId ?? "intro"
+
+  return (
+    <nav aria-label="Navigation de la formation (bureau)">
+      <div className="rounded-3xl bg-[#FDF2F8]/80 p-3 shadow-[0_16px_40px_rgba(190,24,93,0.18)] ring-1 ring-[#F9A8D4]/80 backdrop-blur-sm">
+        <p className="mb-3 px-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#b05a7b]">
+          Parcours 40 h – Licence
+        </p>
+        <ul className="space-y-1.5 text-sm text-[#7b4256]">
+          {sideNavItems.map((item) => {
+            const isActive = safeActiveId === item.id
+            return (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className={[
+                    "flex items-center gap-2 rounded-full px-3 py-1.5 text-xs transition-all duration-200",
+                    isActive
+                      ? "bg-[#EC4899] text-white shadow-[0_12px_30px_rgba(190,24,93,0.5)]"
+                      : "hover:bg-[#FDE7F3] hover:text-[#EC4899]",
+                  ].join(" ")}
+                >
+                  <span
+                    className={[
+                      "h-1.5 w-1.5 rounded-full transition-opacity",
+                      isActive ? "bg-white opacity-100" : "bg-[#EC4899] opacity-50",
+                    ].join(" ")}
+                  />
+                  <span className="font-medium">{item.label}</span>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
 export default function FormationsContent() {
-  const sectionIds = sideNavItems.map((i) => i.id)
+  const sectionIds = useMemo(() => sideNavItems.map((i) => i.id), [])
   const activeId = useActiveSection(sectionIds)
+
   const [scroll, setScroll] = useState(0)
 
   useEffect(() => {
-    function onScroll() {
-      const total = document.body.scrollHeight - window.innerHeight
-      const current = window.scrollY
-      if (total <= 0) {
-        setScroll(0)
-      } else {
-        setScroll(Math.min(100, Math.max(0, (current / total) * 100)))
-      }
+    let raf = 0
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const total = document.documentElement.scrollHeight - window.innerHeight
+        const current = window.scrollY
+        const next = total <= 0 ? 0 : Math.min(100, Math.max(0, (current / total) * 100))
+        setScroll(next)
+      })
     }
-
+    onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener("scroll", onScroll)
+    }
   }, [])
 
   return (
@@ -198,17 +239,10 @@ export default function FormationsContent() {
 
       <SiteHeader />
 
-      <main
-        id="main-content"
-        className="flex-1 py-10 sm:py-16"
-        aria-label="Contenu principal de la formation RR COIFFURE"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <main id="main-content" className="flex-1 py-10 sm:py-16" aria-label="Contenu principal de la formation RR COIFFURE">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* NAV MOBILE */}
-          <nav
-            aria-label="Navigation de la formation (mobile)"
-            className="mb-5 block lg:hidden"
-          >
+          <nav aria-label="Navigation de la formation (mobile)" className="mb-5 block lg:hidden">
             <div className="overflow-x-auto">
               <div className="inline-flex min-w-full gap-2 rounded-full bg-[#FDF2F8]/90 px-2 py-1 text-xs text-[#7b4256] shadow-md ring-1 ring-[#F9A8D4]/60 backdrop-blur-sm">
                 {sideNavItems.map((item) => {
@@ -233,47 +267,11 @@ export default function FormationsContent() {
             </div>
           </nav>
 
-          {/* GRID 2 COLONNES */}
-          <div className="mt-2 grid gap-8 lg:grid-cols-[250px_minmax(0,2fr)] lg:gap-12">
-            {/* COLONNE GAUCHE : menu latéral */}
-            <aside className="hidden lg:block" aria-label="Sommaire de la formation">
-              <div className="sticky top-28 space-y-6">
-                <nav aria-label="Navigation de la formation (bureau)">
-                  <div className="rounded-3xl bg-[#FDF2F8]/80 p-3 shadow-[0_16px_40px_rgba(190,24,93,0.18)] ring-1 ring-[#F9A8D4]/80 backdrop-blur-sm">
-                    <p className="mb-3 px-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#b05a7b]">
-                      Parcours 40 h – Licence
-                    </p>
-                    <ul className="space-y-1.5 text-sm text-[#7b4256]">
-                      {sideNavItems.map((item) => {
-                        const isActive = activeId === item.id
-                        return (
-                          <li key={item.id}>
-                            <a
-                              href={`#${item.id}`}
-                              aria-current={isActive ? "true" : undefined}
-                              className={[
-                                "flex items-center gap-2 rounded-full px-3 py-1.5 text-xs transition-all duration-200",
-                                isActive
-                                  ? "bg-[#EC4899] text-white shadow-[0_12px_30px_rgba(190,24,93,0.5)]"
-                                  : "hover:bg-[#FDE7F3] hover:text-[#EC4899]",
-                              ].join(" ")}
-                            >
-                              <span
-                                className={[
-                                  "h-1.5 w-1.5 rounded-full transition-opacity",
-                                  isActive
-                                    ? "bg-white opacity-100"
-                                    : "bg-[#EC4899] opacity-50",
-                                ].join(" ")}
-                              />
-                              <span className="font-medium">{item.label}</span>
-                            </a>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                </nav>
+          <div className="mt-2 grid gap-8 lg:gap-12 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[360px_minmax(0,1fr)]">
+            <aside className="hidden lg:block" aria-label="Colonne latérale">
+              <ReserveCard />
+              <div className="sticky top-24 mt-6">
+                <SideNav activeId={activeId} />
               </div>
             </aside>
 
@@ -410,8 +408,8 @@ export default function FormationsContent() {
                         2. Pendant les 40 h
                       </p>
                       <p className="mt-1">
-                        Modules progressifs, corrections sur vos gestes et
-                        cas concrets inspirés du salon.
+                        Modules progressifs, corrections sur vos gestes et cas
+                        concrets inspirés du salon.
                       </p>
                     </div>
                     <div>
@@ -544,7 +542,6 @@ export default function FormationsContent() {
                 </div>
 
                 <div className="mt-6 space-y-5">
-                  {/* Jour 1 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 1
@@ -554,19 +551,14 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jour 2 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 2
@@ -576,19 +568,14 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jour 3 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 3
@@ -598,19 +585,14 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jour 4 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 4
@@ -620,19 +602,14 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jour 5 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 5
@@ -642,19 +619,14 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jour 6 */}
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EC4899]">
                       Jour 6
@@ -664,13 +636,9 @@ export default function FormationsContent() {
                         <div key={m.title}>
                           <p className="text-sm font-semibold text-[#2b1019]">
                             {m.title}{" "}
-                            <span className="font-normal text-[#EC4899]">
-                              · {m.hours}
-                            </span>
+                            <span className="font-normal text-[#EC4899]">· {m.hours}</span>
                           </p>
-                          <p className="text-[12px] leading-relaxed text-[#7b4256]">
-                            {m.desc}
-                          </p>
+                          <p className="text-[12px] leading-relaxed text-[#7b4256]">{m.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -678,11 +646,8 @@ export default function FormationsContent() {
                 </div>
 
                 <p className="mt-6 max-w-prose text-xs leading-relaxed text-[#7b4256] sm:text-[13px]">
-                  Cette formation est{" "}
-                  <span className="font-semibold">diplômante</span>. La licence
-                  professionnelle RR COIFFURE est délivrée à l’issue des 40 h,
-                  après validation de votre niveau via les évaluations prévues,
-                  en présentiel comme en vidéo.
+                  Cette formation est <span className="font-semibold">diplômante</span>. La licence
+                  professionnelle RR COIFFURE est délivrée à l’issue des 40 h, après validation de votre niveau.
                 </p>
               </motion.section>
 
@@ -704,29 +669,22 @@ export default function FormationsContent() {
                       Une formatrice de salon, pas une école théorique
                     </h2>
                     <p className="mt-2 text-[13px] leading-relaxed text-[#7b4256]">
-                      RR COIFFURE forme chaque jour de vraies clientes en salon.
-                      La formation reprend les gestes, protocoles et exigences
-                      utilisés au quotidien, loin des cas d’école trop
-                      théoriques.
+                      RR COIFFURE forme chaque jour de vraies clientes en salon. La formation reprend les gestes,
+                      protocoles et exigences utilisés au quotidien.
                     </p>
                     <p className="mt-2 text-[12px] text-[#a0526e]">
-                      Vous apprenez avec une professionnelle qui sait ce qui
-                      fonctionne réellement dans la durée, sur différents types
-                      de cheveux et de profils de clientes.
+                      Vous apprenez avec une professionnelle qui sait ce qui fonctionne réellement dans la durée.
                     </p>
                   </div>
                   <div className="space-y-3">
                     <div className="relative h-40 w-full overflow-hidden rounded-3xl bg-[#FDE7F3] shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
-                      {/* Remplacez ce bloc par une vraie image portrait si disponible */}
                       <div className="absolute inset-0 flex items-center justify-center text-[12px] text-[#a0526e]">
                         Portrait de la formatrice RR COIFFURE
                       </div>
                     </div>
                     <div className="rounded-2xl bg-[#FFF7FB] p-3 text-[12px] text-[#7b4256] ring-1 ring-[#F9C3DF]">
                       <p className="italic">
-                        « Après la formation, j’ai enfin osé poser mes prix et
-                        arrêter de douter sur chaque diagnostic. Mes clientes le
-                        ressentent immédiatement. »
+                        « Après la formation, j’ai enfin osé poser mes prix et arrêter de douter sur chaque diagnostic. »
                       </p>
                       <p className="mt-1 text-[11px] font-semibold text-[#2b1019]">
                         — Aïcha, coiffeuse en reconversion
@@ -756,41 +714,31 @@ export default function FormationsContent() {
                   Concrètement, après ce parcours
                 </p>
                 <div className="mt-4 grid gap-4 text-sm text-[#7b4256] sm:grid-cols-3">
-                  <div className="rounded-2xl bg-white/95 px-4 py-4 shadow-[0_16px_40px_rgba(190,24,93,0.16)] ring-1 ring-[#F9A8D4]/70 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(190,24,93,0.26)]">
-                    <p className="text-sm font-semibold text-[#2b1019]">
-                      Travailler en sécurité
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#7b4256] sm:text-[13px]">
-                      Poser un diagnostic fiable, choisir une technique adaptée
-                      et éviter les erreurs qui abîment la fibre ou créent des
-                      insatisfactions chez la cliente.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl bg-white/95 px-4 py-4 shadow-[0_16px_40px_rgba(190,24,93,0.16)] ring-1 ring-[#F9A8D4]/70 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(190,24,93,0.26)]">
-                    <p className="text-sm font-semibold text-[#2b1019]">
-                      Proposer des prestations complètes
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#7b4256] sm:text-[13px]">
-                      Construire un rendez-vous fluide, du premier contact aux
-                      conseils de fin de prestation, pour donner envie aux
-                      clientes de revenir.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl bg-white/95 px-4 py-4 shadow-[0_16px_40px_rgba(190,24,93,0.16)] ring-1 ring-[#F9A8D4]/70 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(190,24,93,0.26)]">
-                    <p className="text-sm font-semibold text-[#2b1019]">
-                      Valoriser votre activité
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#7b4256] sm:text-[13px]">
-                      Poser vos prix, mettre en avant vos compétences et
-                      utiliser votre licence RR COIFFURE comme gage de sérieux
-                      auprès de vos clientes et partenaires.
-                    </p>
-                  </div>
+                  {[
+                    {
+                      t: "Travailler en sécurité",
+                      d: "Poser un diagnostic fiable, choisir une technique adaptée et éviter les erreurs qui abîment la fibre.",
+                    },
+                    {
+                      t: "Proposer des prestations complètes",
+                      d: "Construire un rendez-vous fluide, du premier contact aux conseils de fin de prestation.",
+                    },
+                    {
+                      t: "Valoriser votre activité",
+                      d: "Poser vos prix, mettre en avant vos compétences et utiliser la licence comme gage de sérieux.",
+                    },
+                  ].map((c) => (
+                    <div
+                      key={c.t}
+                      className="rounded-2xl bg-white/95 px-4 py-4 shadow-[0_16px_40px_rgba(190,24,93,0.16)] ring-1 ring-[#F9A8D4]/70 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_rgba(190,24,93,0.26)]"
+                    >
+                      <p className="text-sm font-semibold text-[#2b1019]">{c.t}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-[#7b4256] sm:text-[13px]">{c.d}</p>
+                    </div>
+                  ))}
                 </div>
                 <p className="mt-3 text-[11px] leading-relaxed text-[#a0526e]">
-                  Plusieurs coiffeur·ses ont déjà suivi ce parcours pour
-                  structurer leurs bases, gagner en confiance et sécuriser leurs
-                  prestations au quotidien.
+                  Plusieurs coiffeur·ses ont déjà suivi ce parcours pour structurer leurs bases et gagner en confiance.
                 </p>
               </motion.section>
 
@@ -808,47 +756,28 @@ export default function FormationsContent() {
                 </h2>
                 <div className="mt-4 grid gap-4 text-[13px] text-[#7b4256] sm:grid-cols-2">
                   <div className="space-y-2">
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>Une licence RR COIFFURE à votre nom.</span>
-                    </p>
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>
-                        Des protocoles clairs pour les prestations essentielles
-                        (diagnostic, couleur, mèches, soins, boucles).
-                      </span>
-                    </p>
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>
-                        Des repères concrets pour adapter vos gestes aux
-                        différents types de cheveux.
-                      </span>
-                    </p>
+                    {[
+                      "Une licence RR COIFFURE à votre nom.",
+                      "Des protocoles clairs (diagnostic, couleur, mèches, soins, boucles).",
+                      "Des repères concrets pour adapter vos gestes aux différents types de cheveux.",
+                    ].map((t) => (
+                      <p key={t} className="flex gap-2">
+                        <CheckIcon />
+                        <span>{t}</span>
+                      </p>
+                    ))}
                   </div>
                   <div className="space-y-2">
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>
-                        Une base pour poser vos prix avec confiance, sans vous
-                        sous-évaluer.
-                      </span>
-                    </p>
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>
-                        Un langage professionnel pour rassurer vos clientes et
-                        expliquer vos choix techniques.
-                      </span>
-                    </p>
-                    <p className="flex gap-2">
-                      <CheckIcon />
-                      <span>
-                        Une vision plus claire de votre activité sur 6 à 12
-                        mois.
-                      </span>
-                    </p>
+                    {[
+                      "Une base pour poser vos prix avec confiance, sans vous sous-évaluer.",
+                      "Un langage pro pour rassurer vos clientes et expliquer vos choix techniques.",
+                      "Une vision plus claire de votre activité sur 6 à 12 mois.",
+                    ].map((t) => (
+                      <p key={t} className="flex gap-2">
+                        <CheckIcon />
+                        <span>{t}</span>
+                      </p>
+                    ))}
                   </div>
                 </div>
               </motion.section>
@@ -872,9 +801,7 @@ export default function FormationsContent() {
                       Informations pratiques
                     </h2>
                     <p className="mt-2 max-w-prose text-sm leading-relaxed text-[#7b4256] sm:text-[15px]">
-                      Les détails (dates, horaires, paiements) sont finalisés
-                      directement avec le salon pour s’adapter à votre
-                      situation.
+                      Les détails (dates, horaires, paiements) sont finalisés directement avec le salon.
                     </p>
                   </div>
                 </div>
@@ -907,15 +834,11 @@ export default function FormationsContent() {
                     <ul className="mt-2 space-y-1.5 leading-relaxed">
                       <li>Message privé sur Instagram au salon RR COIFFURE.</li>
                       <li>Ou passage au salon pour échanger en direct.</li>
-                      <li>
-                        Acompte et paiement en plusieurs fois possibles selon
-                        les cas.
-                      </li>
+                      <li>Acompte et paiement en plusieurs fois possibles selon les cas.</li>
                     </ul>
                   </div>
                 </div>
 
-                {/* BANDEAU INSTAGRAM */}
                 <div className="mt-6 rounded-2xl bg-gradient-to-r from-[#EC4899] via-[#F472B6] to-[#EC4899] p-4 text-xs text-white shadow-[0_24px_65px_rgba(190,24,93,0.45)] sm:flex sm:items-center sm:justify-between sm:text-[13px]">
                   <div className="mb-3 flex items-start gap-3 sm:mb-0">
                     <div className="mt-0.5 rounded-full bg-white/15 p-2">
@@ -926,10 +849,7 @@ export default function FormationsContent() {
                         Une question avant de réserver votre place ?
                       </p>
                       <p className="mt-1 max-w-md text-[11px] leading-relaxed text-white/90 sm:text-[12px]">
-                        Écrivez au salon RR COIFFURE sur Instagram pour vérifier
-                        les prochaines dates, les places disponibles et les
-                        options de paiement. Un message suffit pour commencer la
-                        discussion.
+                        Écrivez au salon RR COIFFURE sur Instagram pour vérifier les prochaines dates, les places et les options de paiement.
                       </p>
                     </div>
                   </div>
@@ -962,9 +882,7 @@ export default function FormationsContent() {
                     Questions fréquentes
                   </h2>
                   <p className="mt-2 max-w-prose text-sm leading-relaxed text-[#7b4256] sm:text-[15px]">
-                    Si vous hésitez encore, ces réponses vous aideront à y voir
-                    plus clair. Et si un point reste flou, le plus simple est
-                    toujours d’écrire directement au salon.
+                    Si vous hésitez encore, ces réponses vous aideront à y voir plus clair.
                   </p>
                 </div>
 
@@ -1007,10 +925,7 @@ export default function FormationsContent() {
                       Prête à valider votre licence RR COIFFURE ?
                     </p>
                     <p className="max-w-xl text-[12px] leading-relaxed text-white/92 sm:text-[13px]">
-                      Un premier échange avec le salon permet de vérifier si ce
-                      parcours de 40 h correspond à votre niveau, à votre
-                      projet et à votre agenda. Vous obtenez les prochaines
-                      dates, les tarifs exacts et les modalités de paiement.
+                      Un premier échange avec le salon permet de vérifier si ce parcours de 40 h correspond à votre niveau et à votre agenda.
                     </p>
                     <Link
                       href="https://www.instagram.com/rr.coiffure/"
@@ -1031,9 +946,7 @@ export default function FormationsContent() {
             <div className="mb-1 flex items-center justify-between text-[11px] text-[#7b4256]">
               <span>Licence professionnelle incluse</span>
               <span>{training.duration}</span>
-              <span className="font-semibold text-[#EC4899]">
-                {training.price}
-              </span>
+              <span className="font-semibold text-[#EC4899]">{training.price}</span>
             </div>
             <Link
               href="https://www.instagram.com/rr.coiffure/"

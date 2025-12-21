@@ -1,22 +1,46 @@
 "use client"
 
-import { type MouseEvent } from "react"
+import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Star, Phone, ArrowRight, ArrowDown } from "lucide-react"
+import { Sparkles, Star, Phone, ArrowRight, ArrowDown, Clock } from "lucide-react"
 
 const HERO_VIDEO = {
   src: "/images/galerie/18.mp4",
+  poster: "/images/galerie/18.jpg",
   alt: "Balayage blond lumineux – RR COIFFURE Genève",
 }
 
 const PROOF_CHIPS = [
   { label: "4.9/5 Google", icon: Star },
   { label: "Diagnostic offert", icon: Sparkles },
-  { label: "Réponse < 2h", icon: Sparkles },
-]
+  { label: "Réponse < 2h", icon: Clock },
+] as const
 
 export default function HeroSection() {
+  const [reducedMotion, setReducedMotion] = useState(false)
+
+  // ✅ 1) Deux vidéos : une nette (foreground) + une floutée (background miroir)
+  const videoFgRef = useRef<HTMLVideoElement | null>(null)
+  const videoBgRef = useRef<HTMLVideoElement | null>(null)
+
+  // ✅ Respecte prefers-reduced-motion (perf + accessibilité)
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const update = () => setReducedMotion(Boolean(mq.matches))
+    update()
+    mq.addEventListener?.("change", update)
+    return () => mq.removeEventListener?.("change", update)
+  }, [])
+
+  // ✅ Offset “header” responsive (plus premium que 80px fixe)
+  const headerOffset = useMemo(() => {
+    if (typeof window === "undefined") return 80
+    if (window.matchMedia("(min-width: 1024px)").matches) return 88
+    if (window.matchMedia("(min-width: 640px)").matches) return 84
+    return 76
+  }, [])
+
   const scrollToHash = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return
     e.preventDefault()
@@ -25,12 +49,36 @@ export default function HeroSection() {
     const el = document.getElementById(id)
     if (!el) return
 
-    const headerOffset = 80
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffset
 
     if (window.location.hash !== href) history.pushState(null, "", href)
-    window.scrollTo({ top, behavior: "smooth" })
+    window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" })
   }
+
+  // ✅ Si reduced motion, on stoppe les vidéos proprement
+  useEffect(() => {
+    const fg = videoFgRef.current
+    const bg = videoBgRef.current
+    if (!fg && !bg) return
+
+    const pauseBoth = () => {
+      fg?.pause()
+      bg?.pause()
+      fg?.removeAttribute("autoplay")
+      bg?.removeAttribute("autoplay")
+    }
+
+    const playBoth = async () => {
+      // tentative de lecture (silencieuse)
+      await Promise.all([
+        fg?.play().catch(() => {}),
+        bg?.play().catch(() => {}),
+      ])
+    }
+
+    if (reducedMotion) pauseBoth()
+    else void playBoth()
+  }, [reducedMotion])
 
   return (
     <section
@@ -47,7 +95,7 @@ export default function HeroSection() {
 
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
-          {/* TEXTE (sans gros cadre) */}
+          {/* TEXTE */}
           <div className="order-1">
             <div className="mx-auto flex max-w-xl flex-col gap-6 lg:mx-0">
               {/* Badge */}
@@ -66,7 +114,8 @@ export default function HeroSection() {
 
               {/* Copy */}
               <p className="text-center text-sm leading-relaxed text-[#7b4256] sm:text-base md:text-lg lg:text-left">
-                Balayages lumineux, soins profonds et coupes sur-mesure. Un résultat durable, pour votre quotidien.
+                Balayages lumineux, soins profonds et coupes sur-mesure. Un rendu net, brillant, et facile à entretenir au
+                quotidien.
               </p>
 
               {/* Proof chips */}
@@ -77,7 +126,7 @@ export default function HeroSection() {
                     className="inline-flex w-full min-w-0 items-center justify-center gap-1 rounded-full border border-[#F9A8D4]/60 bg-white/70 px-2 py-1 text-[10px] font-semibold text-[#2b1019] shadow-sm text-center sm:w-auto sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[11px]"
                   >
                     <Icon className="h-3 w-3 text-[#EC4899] sm:h-3.5 sm:w-3.5" aria-hidden="true" />
-                    <span className="min-w-0 leading-tight">{label}</span>
+                    <span className="min-w-0 whitespace-nowrap leading-tight">{label}</span>
                   </span>
                 ))}
               </div>
@@ -89,12 +138,12 @@ export default function HeroSection() {
                   size="lg"
                   className="w-full rounded-full bg-[#EC4899] px-7 text-sm font-semibold text-white shadow-lg shadow-[#EC4899]/30 transition-all hover:-translate-y-0.5 hover:bg-[#F472B6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC4899]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCE7F3] active:translate-y-0 sm:w-auto"
                 >
-                  <Link href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/rr.coiffure/" target="_blank" rel="noopener noreferrer">
                     <span className="inline-flex items-center gap-2">
                       Réserver en ligne
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </span>
-                  </Link>
+                  </a>
                 </Button>
 
                 <Button
@@ -124,29 +173,58 @@ export default function HeroSection() {
           {/* VISUEL */}
           <div className="order-2">
             <div className="relative mx-auto flex w-full max-w-xl flex-col gap-4 lg:mx-0">
-              {/* Image principale */}
+              {/* Carte vidéo premium */}
               <div className="relative overflow-hidden rounded-[1.6rem] border border-[#F9A8D4]/50 bg-white/40 shadow-[0_22px_70px_rgba(236,72,153,0.20)] backdrop-blur">
-                <div className="relative aspect-[4/3] sm:aspect-[5/4]">
+                {/* Inner highlight (effet verre) */}
+                <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-white/30" />
+
+                {/* ✅ Conteneur vidéo : blur-mirror (bandes intelligentes) */}
+                <div className="relative aspect-[4/3] sm:aspect-[5/4] overflow-hidden">
+                  {/* Background flouté = même vidéo, object-cover, zoom + blur */}
                   <video
-                    className="h-full w-full object-cover"
-                    autoPlay
+                    ref={videoBgRef}
+                    className="absolute inset-0 h-full w-full object-cover scale-125 blur-2xl opacity-60"
                     muted
-                    loop
+                    loop={!reducedMotion}
                     playsInline
                     preload="metadata"
-                    aria-label={HERO_VIDEO.alt}
+                    poster={HERO_VIDEO.poster}
+                    autoPlay={!reducedMotion}
+                    aria-hidden="true"
                   >
                     <source src={HERO_VIDEO.src} type="video/mp4" />
                   </video>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
+                  {/* Overlay de finition : garde la patte rose + contraste */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 via-transparent to-[#EC4899]/20" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+
+                  {/* Vidéo principale : verticale centrée (object-contain) */}
+                  <div className="relative z-10 flex h-full w-full items-center justify-center px-6 sm:px-8">
+                    <video
+                      ref={videoFgRef}
+                      className="h-full w-full max-w-[420px] object-contain"
+                      muted
+                      loop={!reducedMotion}
+                      playsInline
+                      preload="metadata"
+                      poster={HERO_VIDEO.poster}
+                      autoPlay={!reducedMotion}
+                      aria-hidden="true"
+                    >
+                      <source src={HERO_VIDEO.src} type="video/mp4" />
+                    </video>
+                  </div>
+
+                  {/* Micro-vignette premium (optionnel) : grain léger */}
+                  <div className="pointer-events-none absolute inset-0 opacity-25 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll cue (moins agressif que bounce) */}
+        {/* Scroll cue */}
         <div className="mt-10 flex justify-center">
           <a
             href="#services"

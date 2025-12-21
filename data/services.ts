@@ -85,7 +85,7 @@ export const services: Service[] = [
     priceFrom: "À partir de 25 CHF",
     duration: "30–60 min",
     tag: "Soin profond",
-    imageSrc: "/images/hair-spa-treatment.jpg",
+    imageSrc: "/services/b5febca4-4298-48a8-8df8-aa85d233913b.png",
     highlights: [
       { title: "Hydratation profonde", desc: "Cheveux plus doux et souples." },
       { title: "Réparation", desc: "Brillance et protection durable." },
@@ -105,7 +105,7 @@ export const services: Service[] = [
     priceFrom: "À partir de 60 CHF",
     duration: "120–240 min",
     tag: "Longue tenue",
-    imageSrc: "/images/braids-hair-salon.jpg",
+    imageSrc: "/services/67cbe338-c3f4-4985-91cd-2ad016f6d9da.png",
     highlights: [
       { title: "Tenue durable", desc: "Coiffures qui tiennent." },
       { title: "Respect du cuir chevelu", desc: "Pose douce et contrôlée." },
@@ -125,7 +125,7 @@ export const services: Service[] = [
     priceFrom: "À partir de 20 CHF",
     duration: "20–40 min",
     tag: "Enfants",
-    imageSrc: "/images/kids-haircut-salon.jpg",
+    imageSrc: "/services/pexels-rdne-7697348.jpg",
     highlights: [
       { title: "Approche douce", desc: "Moment rassurant." },
       { title: "Coupe pratique", desc: "Facile au quotidien." },

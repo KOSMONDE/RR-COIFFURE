@@ -7,11 +7,13 @@ import GallerySection from "@/components/home/GallerySection"
 import ContactSection from "@/components/home/ContactSection"
 import FinalCtaSection from "@/components/home/FinalCtaSection"
 import SiteFooter from "@/components/home/SiteFooter"
+import FormationPromoPopup from "@/components/home/FormationPromoPopup"
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <SiteHeader />
+      <FormationPromoPopup />
 
       <main id="main-content" className="flex-1">
         <HeroSection />

@@ -256,7 +256,7 @@ export default function SiteHeader({ items = DEFAULT_NAV_ITEMS }: SiteHeaderProp
                 <a href="tel:+41762920712" aria-label="Appeler le salon">
                   <span className="inline-flex items-center gap-2">
                     <Phone className="h-4 w-4" aria-hidden="true" />
-                    Appeler test
+                    Appeler
                   </span>
                 </a>
               </Button>
