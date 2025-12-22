@@ -6,7 +6,7 @@ export default function FinalCtaSection() {
     <section
       id="final-cta"
       aria-labelledby="final-cta-title"
-      className="relative overflow-hidden bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
+      className="relative overflow-hidden bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
     >
       {/* Fond premium */}
       <div className="pointer-events-none absolute inset-0">

@@ -30,7 +30,7 @@ export function ServiceCard({ title, desc, priceFrom, imageSrc, href }: ServiceC
             </CardTitle>
             <Badge
               variant="secondary"
-              className="shrink-0 rounded-full bg-gradient-to-r from-brand-300 to-brand-600 text-white border-0"
+              className="shrink-0 rounded-full bg-linear-to-r from-brand-300 to-brand-600 text-white border-0"
             >
               {priceFrom}
             </Badge>

@@ -171,7 +171,7 @@ export default function SiteHeader({ items = DEFAULT_NAV_ITEMS }: SiteHeaderProp
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="h-0.5 w-full bg-gradient-to-r from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]" />
+      <div className="h-0.5 w-full bg-linear-to-r from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]" />
 
       <a
         href="#main-content"

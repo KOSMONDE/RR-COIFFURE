@@ -51,7 +51,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       <main className="flex-1 bg-white">
         {/* Hero service */}
-        <section className="relative overflow-hidden border-b border-pink-100/60 bg-gradient-to-br from-[#fff1f8] via-white to-[#f3e8ff]">
+        <section className="relative overflow-hidden border-b border-pink-100/60 bg-linear-to-br from-[#fff1f8] via-white to-[#f3e8ff]">
           <div className="pointer-events-none absolute inset-0 opacity-60">
             <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-pink-200/40 blur-3xl" />
             <div className="absolute -right-10 bottom-0 h-60 w-60 rounded-full bg-purple-200/40 blur-3xl" />

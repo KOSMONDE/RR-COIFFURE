@@ -211,8 +211,8 @@ export default function MaintenancePageClient() {
 
       <div className="mx-auto max-w-6xl">
         {/* Carte luxe */}
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-white/90 via-white/80 to-white/70 p-[1px] shadow-[0_24px_80px_rgba(176,51,116,0.35)]">
-          <div className="rounded-[2.4rem] bg-gradient-to-br from-white/92 via-[#FFEAF5]/90 to-white/95 px-6 py-7 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+        <div className="rounded-[2.5rem] bg-linear-to-br from-white/90 via-white/80 to-white/70 p-[1px] shadow-[0_24px_80px_rgba(176,51,116,0.35)]">
+          <div className="rounded-[2.4rem] bg-linear-to-br from-white/92 via-[#FFEAF5]/90 to-white/95 px-6 py-7 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
 
             {/* GRID */}
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)] items-start">
@@ -259,7 +259,7 @@ export default function MaintenancePageClient() {
               <section className="flex flex-col gap-8">
                 <header className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
-                    <div className="h-[2px] w-10 rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899]" />
+                    <div className="h-[2px] w-10 rounded-full bg-linear-to-r from-[#F472B6] to-[#EC4899]" />
                     <span className="text-[11px] tracking-[0.22em] uppercase text-[#a0526e]">
                       Quelques réalisations
                     </span>
@@ -338,7 +338,7 @@ export default function MaintenancePageClient() {
                       <button
                         type="submit"
                         disabled={loading || !password.trim()}
-                        className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-5 py-2.5 text-sm sm:text-base font-medium text-white shadow-md disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-150 hover:shadow-lg hover:-translate-y-0.5"
+                        className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-[#F472B6] to-[#EC4899] px-5 py-2.5 text-sm sm:text-base font-medium text-white shadow-md disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-150 hover:shadow-lg hover:-translate-y-0.5"
                       >
                         <span>Se connecter</span>
                       </button>
@@ -349,7 +349,7 @@ export default function MaintenancePageClient() {
                 {/* Bloc Instagram */}
                 <div className="pt-6 lg:pt-0 lg:pl-8 border-t lg:border-t-0 lg:border-l border-[#F9A8D4]/60">
                   <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#a0526e] mb-2">
-                    <span className="h-[2px] w-6 rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899]" />
+                    <span className="h-[2px] w-6 rounded-full bg-linear-to-r from-[#F472B6] to-[#EC4899]" />
                     <span>Instagram</span>
                   </div>
 
@@ -384,7 +384,7 @@ export default function MaintenancePageClient() {
                       href={BRAND.instagramLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#F472B6] to-[#EC4899] px-4 py-2 text-[11px] sm:text-xs font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                      className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-[#F472B6] to-[#EC4899] px-4 py-2 text-[11px] sm:text-xs font-semibold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
                     >
                       Ouvrir Instagram
                     </a>

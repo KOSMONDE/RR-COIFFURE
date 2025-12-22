@@ -29,7 +29,7 @@ export default function ServicesSection() {
             className="font-display text-3xl font-extrabold tracking-tight text-[#2b1019] md:text-4xl"
           >
             Nos{" "}
-            <span className="bg-gradient-to-r from-[#F472B6] to-[#EC4899] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#F472B6] to-[#EC4899] bg-clip-text text-transparent">
               services
             </span>
           </h2>

@@ -35,7 +35,7 @@ export default function FeaturesSection() {
     <section
       id="features"
       aria-labelledby="features-title"
-      className="relative overflow-hidden bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
+      className="relative overflow-hidden bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] pt-16 pb-10 sm:pt-24 sm:pb-14"
     >
       {/* Fond premium (calmé) */}
       <div className="pointer-events-none absolute inset-0">
@@ -57,7 +57,7 @@ export default function FeaturesSection() {
             className="font-display text-2xl font-extrabold tracking-tight text-[#2b1019] sm:text-4xl"
           >
             Pourquoi choisir{" "}
-            <span className="bg-gradient-to-r from-[#F472B6] via-[#EC4899] to-[#F97316] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#F472B6] via-[#EC4899] to-[#F97316] bg-clip-text text-transparent">
               RR Coiffure
             </span>
           </h2>
@@ -78,7 +78,7 @@ export default function FeaturesSection() {
                 className="group rounded-3xl border border-white/40 bg-white/55 p-6 text-center shadow-[0_10px_30px_rgba(176,51,116,0.10)] backdrop-blur transition-all duration-200 hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_16px_42px_rgba(176,51,116,0.14)] focus-within:ring-2 focus-within:ring-[#EC4899]/30"
               >
                 {/* Icône premium (plus douce) */}
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-[#F9A8D4] via-[#F472B6] to-[#EC4899] shadow-[0_10px_22px_rgba(176,51,116,0.18)] ring-1 ring-white/50 transition-transform duration-300 group-hover:scale-[1.06]">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-3xl bg-linear-to-br from-[#F9A8D4] via-[#F472B6] to-[#EC4899] shadow-[0_10px_22px_rgba(176,51,116,0.18)] ring-1 ring-white/50 transition-transform duration-300 group-hover:scale-[1.06]">
                   <Icon className="h-7 w-7 text-white drop-shadow" aria-hidden="true" />
                   <div className="pointer-events-none absolute inset-0 rounded-3xl bg-white/18 opacity-0 transition-opacity duration-300 group-hover:opacity-45" />
                 </div>

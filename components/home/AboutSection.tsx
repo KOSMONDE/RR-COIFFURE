@@ -236,7 +236,7 @@ export default function AboutSection() {
                 className="group relative h-full overflow-hidden rounded-2xl border border-[#F9A8D4]/20 bg-white/60 p-6 backdrop-blur shadow-[0_6px_18px_rgba(236,72,153,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(236,72,153,0.10)] sm:p-7"
               >
                 {/* Ligne décorative fine */}
-                <div className="pointer-events-none absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-[#EC4899]/35 via-[#F9A8D4]/15 to-transparent" />
+                <div className="pointer-events-none absolute left-0 top-0 h-[2px] w-full bg-linear-to-r from-[#EC4899]/35 via-[#F9A8D4]/15 to-transparent" />
 
                 <div className="mx-auto w-full max-w-[18rem] text-center">
                   <div className="flex items-center justify-center gap-2.5">

@@ -15,7 +15,7 @@ export default function ConfidentialitePage() {
       <SiteHeader />
 
       <main id="main-content" className="flex-1">
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
             <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#F9A8D4]/40 blur-3xl" />

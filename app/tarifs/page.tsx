@@ -83,7 +83,7 @@ export default function TarifsPage() {
         {/* HERO */}
         <section
           id="tarifs"
-          className="relative overflow-hidden bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] py-16 sm:py-20"
+          className="relative overflow-hidden bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8] py-16 sm:py-20"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
@@ -158,7 +158,7 @@ export default function TarifsPage() {
 
         {/* CTA */}
         <section className="relative overflow-hidden py-16 sm:py-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]" />
+          <div className="absolute inset-0 bg-linear-to-br from-[#FFE5F4] via-[#F9BDD9] to-[#EC7EB8]" />
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/textures/noise.png')]" />
             <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#F9A8D4]/40 blur-3xl" />
