@@ -7,7 +7,7 @@ import { Sparkles, Star, Phone, ArrowRight, ArrowDown, Clock } from "lucide-reac
 
 const HERO_VIDEO = {
   src: "/images/galerie/1221.mov",
-  poster: "/images/galerie/17.jpeg",
+  // ✅ Poster retiré pour éviter l’image avant la lecture
   alt: "Balayage blond lumineux – RR COIFFURE Genève",
 }
 
@@ -69,11 +69,7 @@ export default function HeroSection() {
     }
 
     const playBoth = async () => {
-      // tentative de lecture (silencieuse)
-      await Promise.all([
-        fg?.play().catch(() => {}),
-        bg?.play().catch(() => {}),
-      ])
+      await Promise.all([fg?.play().catch(() => {}), bg?.play().catch(() => {})])
     }
 
     if (reducedMotion) pauseBoth()
@@ -179,7 +175,7 @@ export default function HeroSection() {
                 <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-white/30" />
 
                 {/* ✅ Conteneur vidéo : blur-mirror (bandes intelligentes) */}
-                <div className="relative aspect-4/3 sm:aspect-5/4 overflow-hidden">
+                <div className="relative aspect-4/3 sm:aspect-5/4 overflow-hidden bg-[#F9BDD9]">
                   {/* Background flouté = même vidéo, object-cover, zoom + blur */}
                   <video
                     ref={videoBgRef}
@@ -188,7 +184,6 @@ export default function HeroSection() {
                     loop={!reducedMotion}
                     playsInline
                     preload="metadata"
-                    poster={HERO_VIDEO.poster}
                     autoPlay={!reducedMotion}
                     aria-hidden="true"
                   >
@@ -208,7 +203,6 @@ export default function HeroSection() {
                       loop={!reducedMotion}
                       playsInline
                       preload="metadata"
-                      poster={HERO_VIDEO.poster}
                       autoPlay={!reducedMotion}
                       aria-hidden="true"
                     >

@@ -532,32 +532,6 @@ export default function FormationsContent() {
 
       <main id="main-content" className="flex-1 py-10 sm:py-16" aria-label="Contenu principal de la formation RR COIFFURE">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* NAV MOBILE */}
-          <nav aria-label="Navigation de la formation (mobile)" className="mb-5 block lg:hidden">
-            <div className="overflow-x-auto">
-              <div className="inline-flex min-w-full gap-2 rounded-full bg-white/90 px-2 py-1 text-xs text-[#5E3B4D] shadow-md ring-1 ring-[#F3D6E5] backdrop-blur-sm">
-                {sideNavItems.map((item) => {
-                  const isActive = activeId === item.id
-                  return (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      aria-current={isActive ? "true" : undefined}
-                      className={[
-                        "whitespace-nowrap rounded-full px-3 py-2 transition-all duration-200 ring-1",
-                        isActive
-                          ? "bg-[#141018] text-white shadow-[0_10px_24px_rgba(17,24,39,0.18)] ring-[#141018]/30"
-                          : "bg-white/85 text-[#5E3B4D] ring-[#F3D6E5] hover:bg-[#FFF2F8] hover:text-[#E11D74]",
-                      ].join(" ")}
-                    >
-                      {item.label}
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
-          </nav>
-
           <div className="mt-2 grid gap-8 lg:gap-12 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
             <aside className="hidden lg:block" aria-label="Colonne latérale">
               <ReserveCard selectedMode={selectedMode} onSelectMode={setSelectedMode} />
@@ -699,7 +673,7 @@ export default function FormationsContent() {
                     <div className="order-2 mt-6 grid gap-4 sm:grid-cols-2 lg:order-3 lg:col-span-2">
                       <BulletPanelPremium
                         variant="ideal"
-                        title="Idéal si…"
+                        title="Idéal si"
                         items={[
                           "Vous êtes en reconversion ou autodidacte et voulez des bases pro.",
                           "Vous voulez sécuriser vos diagnostics et vos gestes.",
@@ -708,7 +682,7 @@ export default function FormationsContent() {
                       />
                       <BulletPanelPremium
                         variant="not"
-                        title="Moins adapté si…"
+                        title="Moins adapté si"
                         items={[
                           "Vous cherchez uniquement des cours théoriques sans pratique.",
                           "Vous ne pouvez pas vous engager sur la totalité des 40 h.",
