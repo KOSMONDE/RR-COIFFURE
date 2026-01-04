@@ -22,14 +22,14 @@ const training = {
 
 // ✅ UX: prochaines dates + places + compteur (cohérent Lausanne partout)
 const nextSession = {
-  startISO: "2026-01-01T09:00:00+01:00",
-  startLabel: "1 janvier 2026",
+  startISO: "2026-01-10T09:00:00+01:00",
+  startLabel: "10 janvier 2026",
   startTimeLabel: "09:00",
   city: "Lausanne",
   totalSeats: 10,
   seatsLeft: 8,
   // ✅ Google Calendar : timestamps (exemple 6 jours, fin à 17:00)
-  calendarDates: "20260101T090000/20260106T170000",
+  calendarDates: "20260110T090000/20260115T170000",
 }
 
 const modules = [
@@ -872,8 +872,8 @@ export default function FormationsContent() {
                       </div>
                     </div>
                     <div className="rounded-3xl bg-white/95 p-4 text-[13px] text-[#5E3B4D] ring-1 ring-[#F3D6E5]">
-                      <p className="italic">« Après la formation, j’ai enfin osé poser mes prix et arrêter de douter sur chaque diagnostic. »</p>
-                      <p className="mt-2 text-[12px] font-semibold text-[#140A11]">— Aïcha, coiffeuse en reconversion</p>
+                      <p className="italic">« J’ai gagné en technique et en confiance : mes rendez-vous sont plus fluides et mes clientes le remarquent. »</p>
+                      <p className="mt-2 text-[12px] font-semibold text-[#140A11]">— Leïla, coiffeuse indépendante</p>
                     </div>
                   </div>
                 </div>
@@ -897,7 +897,7 @@ export default function FormationsContent() {
                 <div className="mt-5 grid gap-4 sm:grid-cols-3">
                   {[
                     { t: "Travailler en sécurité", d: "Poser un diagnostic fiable, choisir une technique adaptée et éviter les erreurs." },
-                    { t: "Proposer des prestations complètes", d: "Construire un rendez-vous fluide, du premier contact aux conseils finaux." },
+                    { t: "Proposer des prestations", d: "Construire un rendez-vous fluide, du premier contact aux conseils finaux." },
                     { t: "Valoriser votre activité", d: "Poser vos prix, mettre en avant vos compétences et rassurer vos clientes." },
                   ].map((c) => (
                     <div key={c.t} className="rounded-4xl bg-[#FFF7FB] p-5 ring-1 ring-[#F0C2D9] shadow-[0_16px_40px_rgba(17,24,39,0.08)]">
