@@ -6,7 +6,3 @@ export async function POST() {
   res.cookies.set("admin_token", "", { httpOnly: true, path: "/", maxAge: 0 });
   return res;
 }
-
-export async function GET() {
-  return NextResponse.json({ ok: false, error: "Method not allowed" }, { status: 405 });
-}
