@@ -79,16 +79,6 @@ export default function ServicesCatalog({ services }: ServicesCatalogProps) {
           ) : (
             <div className="py-16 text-center">
               <p className="text-sm text-[#7b4256]">Aucune prestation trouvée pour cette catégorie.</p>
-              <div className="mt-5">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setActiveFilter("Tous")}
-                  className="rounded-full border-[#F9A8D4]/60 bg-white px-5 text-xs font-semibold text-[#7b4256] hover:bg-[#FDE7F3]"
-                >
-                  Réinitialiser les filtres
-                </Button>
-              </div>
             </div>
           )}
         </div>

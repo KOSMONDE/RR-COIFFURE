@@ -69,19 +69,6 @@ function BigCountdown({ target }: { target: string }) {
     );
   }
 
-  const Cell = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center gap-2">
-      <div className="rounded-2xl bg-white/95 shadow-sm px-5 py-4 sm:px-7 sm:py-6 border border-pink-100 transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg">
-        <span className="block text-3xl sm:text-5xl font-extrabold tabular-nums text-[#291017]">
-          {String(value).padStart(2, "0")}
-        </span>
-      </div>
-      <span className="text-[10px] sm:text-xs font-medium text-[#a0526e] uppercase tracking-[0.18em]">
-        {label}
-      </span>
-    </div>
-  );
-
   return (
     <div className="mt-3">
       <p className="text-[11px] sm:text-xs text-[#7e3b54] tracking-wide">
@@ -92,11 +79,26 @@ function BigCountdown({ target }: { target: string }) {
         aria-live="polite"
         aria-label="Compte à rebours avant mise en ligne"
       >
-        <Cell value={d} label="jours" />
-        <Cell value={h} label="heures" />
-        <Cell value={m} label="minutes" />
-        <Cell value={s} label="secondes" />
+        <CountdownCell value={d} label="jours" />
+        <CountdownCell value={h} label="heures" />
+        <CountdownCell value={m} label="minutes" />
+        <CountdownCell value={s} label="secondes" />
       </div>
+    </div>
+  );
+}
+
+function CountdownCell({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div className="rounded-2xl bg-white/95 shadow-sm px-5 py-4 sm:px-7 sm:py-6 border border-pink-100 transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg">
+        <span className="block text-3xl sm:text-5xl font-extrabold tabular-nums text-[#291017]">
+          {String(value).padStart(2, "0")}
+        </span>
+      </div>
+      <span className="text-[10px] sm:text-xs font-medium text-[#a0526e] uppercase tracking-[0.18em]">
+        {label}
+      </span>
     </div>
   );
 }
